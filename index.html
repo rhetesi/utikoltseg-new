@@ -12,21 +12,20 @@
         <h1>Útiköltség elszámolás készítése</h1>
         <p></p>
         <div class="basedatas">
-            <p>A csillaggal jelölt mezők kitöltése kötelező!</p>
             <div class="form-group">
-                <label for="">Név<small>*</small></label>
+                <label for="">Név<small class="compulsory">*</small></label>
                 <input type="text" class="name" placeholder="Kérem, adja meg a teljes nevét!" required>
             </div>
             <div class="form-group">
-                <label for="">Település<small>*</small></label>
+                <label for="">Település<small class="compulsory">*</small></label>
                 <input type="text" class="city" placeholder="Kérem, adja meg a település nevét, ahol lakik!"required>
             </div>
             <div class="form-group">
-                <label for="">Postacím<small>*</small></label>
+                <label for="">Postacím<small class="compulsory">*</small></label>
                 <input type="text" class="address" placeholder="Kérem, adja meg a postacímét (utca, házszám, emelet, ajtó)!"required>
             </div>
             <div class="form-group">
-                <label for="">Távolság<small>*</small></label>
+                <label for="">Távolság<small class="compulsory">*</small></label>
                 <input type="text" class="distance" placeholder="Kérem, adja meg a lakóhelye és munkahelye közötti távolságot!"required>
             </div>
             <div class="form-group">
@@ -37,9 +36,16 @@
                 <label for="">Gépjármű rendszáma</label>
                 <input type="text" class="plate" placeholder="Itt adhatja meg gépjárműve rendszámát">
             </div>
+            <small class="compulsory">A csillaggal jelölt mezők kitöltése kötelező!</small>
         </div>
-        <div class="monthselect"></div>
-        <div class="dayspicker"></div>
+        <div class="months">
+            <h3>Kérem válassza ki, melyik hónapra kívánja kitölteni a nyomtatványt</h3>
+            <div class="monthselect"></div>
+            <button class="monthselection">Ez kell-e majd a végén?</button>
+        </div>
+        <div class="dayspicker">
+            
+        </div>
         <button type="submit">Nyomtat</button>
     </main>
 

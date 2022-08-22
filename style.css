@@ -1,5 +1,9 @@
 * {
     box-sizing: border-box;
     margin: 0.2 em;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+.compulsory {
+    color: rgb(175, 0, 0);
+}
