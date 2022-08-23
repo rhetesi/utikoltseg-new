@@ -25,6 +25,9 @@ const dateOptionLong = {
 const dateOptionMonth = {
     month: 'long'
 };
+const dateOptionDate = {
+    day: 'numeric'
+};
 // const beforeMonthShortForm = new Date(today.getFullYear(), new Date(beforeMonth.getMonth()), today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
 // const actualMonthShortForm = new Date(today.getFullYear(), new Date(actualMonth.getMonth()), today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
 // const afterMonthShortForm = new Date(today.getFullYear(), new Date(afterMonth.getMonth()), today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
@@ -62,9 +65,9 @@ const printButton = document.querySelector('.print');
 // monthSelect.insertAdjacentHTML('beforeend', new Date(today.getFullYear(), afterMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonthHU));
 
 today.getDate() >= 20 ?
-    monthSelect.insertAdjacentHTML('beforeend', monthView(actualMonth, dateOptionMonth)) :
+    monthSelect.insertAdjacentHTML('beforeend', `${monthView(actualMonth, dateOptionMonth)}`) :
     // monthSelect.insertAdjacentHTML('beforeend', `${actualMonthShortForm}`) :
-    monthSelect.insertAdjacentHTML('beforeend', monthView(beforeMonth, dateOptionMonth), monthView(actualMonth, dateOptionMonth));
+    monthSelect.insertAdjacentHTML('beforeend', `${monthView(beforeMonth, dateOptionMonth)}, ${monthView(actualMonth, dateOptionMonth)}`);
 
 /**
  * Ha nap kisebb/egyenlő 10, akkor előző hónap legyen kiválasztva és felajánlja az aktuális hónapot,
