@@ -4,7 +4,7 @@ const today = new Date();
 let actualMonth = today.getMonth();
 let beforeMonth = actualMonth - 1;
 let afterMonth = actualMonth + 1;
-const dateOptionLongHU = {year: 'numeriv', month: 'long', day: 'numeric'};
+const dateOptionLongHU = {year: 'numeric', month: 'long', day: 'numeric'};
 const dateOptionMonthHU = {month: 'long'};
 
 const basedatas = {
