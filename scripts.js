@@ -4,6 +4,12 @@ const today = new Date();
 const actualMonth = today.getMonth();
 const beforeMonth = actualMonth - 1;
 const afterMonth = actualMonth + 1;
+// beforeMonth = new Date(today.getFullYear(), today.getMonth(), 1) - 1
+// afterMonth = new Datwe(today.getFullYear(), today.getMonth() + 1, 1)
+const beforeMonth2 = new Date(new Date(today.getFullYear(), today.getMonth(), 1) - 1);
+console.log(beforeMonth2);
+const afterMonth2 = new Date(today.getFullYear(), new Date().getMonth() + 1, 1);
+console.log(afterMonth2);
 const dateOptionLongHU = {year: 'numeric', month: 'long', day: 'numeric'};
 const dateOptionMonthHU = { month: 'long' };
 const beforeMonthShortForm = new Date(today.getFullYear(), beforeMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonthHU);
