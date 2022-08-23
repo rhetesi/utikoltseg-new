@@ -1,20 +1,20 @@
 'use strict';
 
 const today = new Date();
-const actualMonth = today.getMonth();
-const beforeMonth = actualMonth - 1;
-const afterMonth = actualMonth + 1;
+const actualMonth = today;
+// const beforeMonth = actualMonth - 1;
+// const afterMonth = actualMonth + 1;
 // beforeMonth = new Date(today.getFullYear(), today.getMonth(), 1) - 1
 // afterMonth = new Datwe(today.getFullYear(), today.getMonth() + 1, 1)
-const beforeMonth2 = new Date(new Date(today.getFullYear(), today.getMonth(), 1) - 1);
-console.log(beforeMonth2);
-const afterMonth2 = new Date(today.getFullYear(), new Date().getMonth() + 1, 1);
-console.log(afterMonth2);
-const dateOptionLongHU = {year: 'numeric', month: 'long', day: 'numeric'};
-const dateOptionMonthHU = { month: 'long' };
-const beforeMonthShortForm = new Date(today.getFullYear(), beforeMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonthHU);
-const actualMonthShortForm = new Date(today.getFullYear(), actualMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonthHU);
-const afterMonthShortForm = new Date(today.getFullYear(), afterMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonthHU);
+const beforeMonth = new Date(new Date(today.getFullYear(), today.getMonth(), 1) - 1);
+const afterMonth = new Date(today.getFullYear(), new Date().getMonth() + 1, 1);
+// console.log(beforeMonth2);
+// console.log(afterMonth2);
+const dateOptionLong = {year: 'numeric', month: 'long', day: 'numeric'};
+const dateOptionMonth = { month: 'long' };
+const beforeMonthShortForm = new Date(today.getFullYear(), beforeMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
+const actualMonthShortForm = new Date(today.getFullYear(), actualMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
+const afterMonthShortForm = new Date(today.getFullYear(), afterMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
 
 const basedatas = {
     name: '',
@@ -24,6 +24,20 @@ const basedatas = {
     vehicle: '',
     plate: ''
 };
+
+// Hónap hosszának kiszámítása
+const monthLength = (month) => { 
+    return length = parseInt(new Date(new Date(month.getFullYear(), month.getMonth() + 1, 1) - 1).getDate())
+};
+// console.log(isNaN(monthLength(actualMonth)));
+
+// Hónap megjelenítésének konvertálása
+const monthView = (month, option) => {
+    let view = new Date(month.getFullYear(), month.getMonth(), month.getDate()).toLocaleDateString('hu-HU', option);
+    return view;
+};
+// console.log(monthView(beforeMonth, dateOptionLong));
+// console.log(monthView(beforeMonth, dateOptionMonth));
 
 const monthSelect = document.querySelector('.monthselect');
 const monthSelectionButton = document.querySelector('.monthselection');
