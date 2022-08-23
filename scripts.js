@@ -7,14 +7,14 @@ const actualMonth = today;
 // beforeMonth = new Date(today.getFullYear(), today.getMonth(), 1) - 1
 // afterMonth = new Datwe(today.getFullYear(), today.getMonth() + 1, 1)
 const beforeMonth = new Date(new Date(today.getFullYear(), today.getMonth(), 1) - 1);
-const afterMonth = new Date(today.getFullYear(), new Date().getMonth() + 1, 1);
-// console.log(beforeMonth2);
-// console.log(afterMonth2);
+const afterMonth = new Date(today.getFullYear(), new Date(today.getMonth() + 1), 1);
+// console.log(beforeMonth);
+// console.log(afterMonth);
 const dateOptionLong = {year: 'numeric', month: 'long', day: 'numeric'};
 const dateOptionMonth = { month: 'long' };
-const beforeMonthShortForm = new Date(today.getFullYear(), beforeMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
-const actualMonthShortForm = new Date(today.getFullYear(), actualMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
-const afterMonthShortForm = new Date(today.getFullYear(), afterMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
+// const beforeMonthShortForm = new Date(today.getFullYear(), new Date(beforeMonth.getMonth()), today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
+// const actualMonthShortForm = new Date(today.getFullYear(), new Date(actualMonth.getMonth()), today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
+// const afterMonthShortForm = new Date(today.getFullYear(), new Date(afterMonth.getMonth()), today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
 
 const basedatas = {
     name: '',
@@ -49,8 +49,9 @@ const printButton = document.querySelector('.print');
 // monthSelect.insertAdjacentHTML('beforeend', new Date(today.getFullYear(), afterMonth, today.getDay()).toLocaleDateString('hu-HU', dateOptionMonthHU));
 
 today.getDate() >= 20 ?
-    monthSelect.insertAdjacentHTML('beforeend', `${actualMonthShortForm}`) :
-    monthSelect.insertAdjacentHTML('beforeend', `${beforeMonthShortForm} , ${actualMonthShortForm}`);
+    monthSelect.insertAdjacentHTML('beforeend', monthView(actualMonth, dateOptionMonth)) :
+    // monthSelect.insertAdjacentHTML('beforeend', `${actualMonthShortForm}`) :
+    monthSelect.insertAdjacentHTML('beforeend', monthView(beforeMonth, dateOptionMonth) , monthView(actualMonth, dateOptionMonth));
 
 /**
  * Ha nap kisebb/egyenlő 10, akkor előző hónap legyen kiválasztva és felajánlja az aktuális hónapot,
