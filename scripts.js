@@ -14,3 +14,7 @@ const basedatas = {
     plate: ''
 };
 
+const monthSelect = document.querySelector('.monthselect');
+const monthSelectionButton = document.querySelector('.monthselection');
+const daysPicker = document.querySelector('.dayspicker');
+const printButton = document.querySelector('.print');
