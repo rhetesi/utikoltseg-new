@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Útiköltség elszámolás</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
+
 <body>
     <main>
         <h1>Útiköltség elszámolás készítése</h1>
@@ -18,15 +20,17 @@
             </div>
             <div class="form-group">
                 <label for="">Település<small class="compulsory">*</small></label>
-                <input type="text" class="city" placeholder="Kérem, adja meg a település nevét, ahol lakik!"required>
+                <input type="text" class="city" placeholder="Kérem, adja meg a település nevét, ahol lakik!" required>
             </div>
             <div class="form-group">
                 <label for="">Postacím<small class="compulsory">*</small></label>
-                <input type="text" class="address" placeholder="Kérem, adja meg a postacímét (utca, házszám, emelet, ajtó)!"required>
+                <input type="text" class="address"
+                    placeholder="Kérem, adja meg a postacímét (utca, házszám, emelet, ajtó)!" required>
             </div>
             <div class="form-group">
                 <label for="">Távolság<small class="compulsory">*</small></label>
-                <input type="text" class="distance" placeholder="Kérem, adja meg a lakóhelye és munkahelye közötti távolságot!"required>
+                <input type="text" class="distance"
+                    placeholder="Kérem, adja meg a lakóhelye és munkahelye közötti távolságot!" required>
             </div>
             <div class="form-group">
                 <label for="">Gépjármű típusa</label>
@@ -44,11 +48,12 @@
             <!-- <button class="monthselection">Ez kell-e majd a végén?</button> -->
         </div>
         <div class="dayspicker">
-            
+
         </div>
         <button type="submit" class="print">Nyomtat</button>
     </main>
 
-    <script src="./scripts.js"></script>
+    <script type="module" src="./assets/main.js"></script>
 </body>
+
 </html>

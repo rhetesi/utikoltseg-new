@@ -1,5 +1,12 @@
 'use strict';
 
+import {
+    workCity,
+    pricePerKm
+} from "./config.js";
+
+// console.log(workCity, pricePerKm);
+
 const today = new Date();
 const actualMonth = today;
 // const beforeMonth = actualMonth - 1;
@@ -10,8 +17,14 @@ const beforeMonth = new Date(new Date(today.getFullYear(), today.getMonth(), 1) 
 const afterMonth = new Date(today.getFullYear(), new Date(today.getMonth() + 1), 1);
 // console.log(beforeMonth);
 // console.log(afterMonth);
-const dateOptionLong = {year: 'numeric', month: 'long', day: 'numeric'};
-const dateOptionMonth = { month: 'long' };
+const dateOptionLong = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+};
+const dateOptionMonth = {
+    month: 'long'
+};
 // const beforeMonthShortForm = new Date(today.getFullYear(), new Date(beforeMonth.getMonth()), today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
 // const actualMonthShortForm = new Date(today.getFullYear(), new Date(actualMonth.getMonth()), today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
 // const afterMonthShortForm = new Date(today.getFullYear(), new Date(afterMonth.getMonth()), today.getDay()).toLocaleDateString('hu-HU', dateOptionMonth);
@@ -26,7 +39,7 @@ const basedatas = {
 };
 
 // Hónap hosszának kiszámítása
-const monthLength = (month) => { 
+const monthLength = (month) => {
     return length = parseInt(new Date(new Date(month.getFullYear(), month.getMonth() + 1, 1) - 1).getDate())
 };
 // console.log(isNaN(monthLength(actualMonth)));
@@ -51,7 +64,7 @@ const printButton = document.querySelector('.print');
 today.getDate() >= 20 ?
     monthSelect.insertAdjacentHTML('beforeend', monthView(actualMonth, dateOptionMonth)) :
     // monthSelect.insertAdjacentHTML('beforeend', `${actualMonthShortForm}`) :
-    monthSelect.insertAdjacentHTML('beforeend', monthView(beforeMonth, dateOptionMonth) , monthView(actualMonth, dateOptionMonth));
+    monthSelect.insertAdjacentHTML('beforeend', monthView(beforeMonth, dateOptionMonth), monthView(actualMonth, dateOptionMonth));
 
 /**
  * Ha nap kisebb/egyenlő 10, akkor előző hónap legyen kiválasztva és felajánlja az aktuális hónapot,
