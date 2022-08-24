@@ -81,3 +81,20 @@ today.getDate() >= 20 ?
  *      actual/radio(selected)
  * 
  */
+
+const monthView2 = (month, date = 1, option) => {
+
+    let view = new Date(month.getFullYear(), month.getMonth(), date).toLocaleDateString('hu-HU', option);
+    return view;
+};
+
+function daysList(month) {
+    let length = monthLength(month);
+    for (let i = 1; i <= length; i++) {
+        console.log(monthView2(month, i, dateOptionDate));
+    }
+};
+
+daysList(beforeMonth);
+
+console.log(monthView2(actualMonth, dateOptionLong));
