@@ -82,51 +82,100 @@ today.getDate() >= 20 ?
  * 
  */
 
-const monthView2 = (month, date = 1, option) => {
+// const monthView2 = (month, date = 1, option) => {
 
-    let view = new Date(month.getFullYear(), month.getMonth(), date).toLocaleDateString('hu-HU', option);
-    return view;
-};
+//     let view = new Date(month.getFullYear(), month.getMonth(), date).toLocaleDateString('hu-HU', option);
+//     return view;
+// };
 
-function daysList(month) {
-    let length = monthLength(month);
-    for (let i = 1; i <= length; i++) {
-        console.log(monthView2(month, i, dateOptionDate));
-    }
-};
+// function daysListOld(month) {
+//     let length = monthLength(month);
+//     for (let i = 1; i <= length; i++) {
+//         console.log(monthView2(month, i, dateOptionDate));
+//     }
+// };
 
-daysList(beforeMonth);
+// daysListOld(beforeMonth);
 
 // console.log(monthView2(actualMonth, dateOptionLong));
 
-function mv3(params, option) {
-    let fulldate = {
-        // year: 1,
-        // month: 0,
-        // date: 0
-    };
-    // fulldate.year = today.getFullYear();
-    // fulldate.month = today.getMonth();
-    // fulldate.date = today.getDate();
+// function mv3(params, option) {
+//     let fulldate = {
+//         // year: 1,
+//         // month: 0,
+//         // date: 0
+//     };
+//     // fulldate.year = today.getFullYear();
+//     // fulldate.month = today.getMonth();
+//     // fulldate.date = today.getDate();
     
-    // fulldate.year = params.year;
-    // fulldate.month = params.month;
-    // fulldate.date = params.date;
+//     // fulldate.year = params.year;
+//     // fulldate.month = params.month;
+//     // fulldate.date = params.date;
+
+//     params.year ? fulldate.year = params.year : fulldate.year = today.getFullYear();
+//     params.month ? fulldate.month = params.month : fulldate.month = today.getMonth();
+//     params.date ? fulldate.date = params.date : fulldate.date = today.getDate();
+//     // console.log(fulldate);
+    
+//     // let view = new Date(year, month, date).toLocaleDateString('hu-HU', option);
+//     // return view;
+    
+//     let view2 = new Date(fulldate.year, fulldate.month, fulldate.date).toLocaleDateString('hu-HU', option);
+//     return view2
+// }
+
+
+// console.log(mv3({year: 2021, month: 6, date: 23}, dateOptionLong));
+// console.log(mv3({ month: 6 }, dateOptionLong));
+// console.log(mv3({ date: 1 }, dateOptionMonth));
+// console.log(mv3({ year: 1998, date: 14 }, dateOptionLong));
+// console.log(mv3({ year: 1998, date: 14 }, dateOptionDate));
+
+
+// function daysList2(m) {
+//     let length = monthLength(m);
+//     for (let i = 1; i <= length; i++) {
+//         console.log(mv3({month: m.getMonth(), date: i}, dateOptionLong));
+//     }
+// };
+
+// daysList2(beforeMonth);
+
+
+function dateview(option, params) {
+    let fulldate = {};
 
     params.year ? fulldate.year = params.year : fulldate.year = today.getFullYear();
     params.month ? fulldate.month = params.month : fulldate.month = today.getMonth();
     params.date ? fulldate.date = params.date : fulldate.date = today.getDate();
-    // console.log(fulldate);
-    
-    // let view = new Date(year, month, date).toLocaleDateString('hu-HU', option);
-    // return view;
-    
-    let view2 = new Date(fulldate.year, fulldate.month, fulldate.date).toLocaleDateString('hu-HU', option);
-    return view2
+
+    let view = new Date(fulldate.year, fulldate.month, fulldate.date).toLocaleDateString('hu-HU', option);
+    return view
 }
 
+// function daysListOld(month) {
+//     let length = monthLength(month);
+//     for (let i = 1; i <= length; i++) {
+//         console.log(monthView2(month, i, dateOptionDate));
+//     }
+// };
 
-console.log(mv3({year: 2021, month: 6, date: 23}, dateOptionLong));
-console.log(mv3({ month: 6 }, dateOptionLong));
-console.log(mv3({ date: 1 }, dateOptionMonth));
+// function daysList2(m) {
+//     let length = monthLength(m);
+//     for (let i = 1; i <= length; i++) {
+//         console.log(mv3({month: m.getMonth(), date: i}, dateOptionLong));
+//     }
+// };
 
+function daysOfMonthList(option, month) {
+    let length = monthLength(month);
+    // console.log(length);
+    // let day
+    for (let i = 1; i <= length; i++) {
+        console.log(dateview(option, { month: month.getMonth(), date: i }));
+        // console.log(day);
+    }
+}
+
+daysOfMonthList(dateOptionLong, actualMonth);
