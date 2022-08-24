@@ -97,4 +97,36 @@ function daysList(month) {
 
 daysList(beforeMonth);
 
-console.log(monthView2(actualMonth, dateOptionLong));
+// console.log(monthView2(actualMonth, dateOptionLong));
+
+function mv3(params, option) {
+    let fulldate = {
+        // year: 1,
+        // month: 0,
+        // date: 0
+    };
+    // fulldate.year = today.getFullYear();
+    // fulldate.month = today.getMonth();
+    // fulldate.date = today.getDate();
+    
+    // fulldate.year = params.year;
+    // fulldate.month = params.month;
+    // fulldate.date = params.date;
+
+    params.year ? fulldate.year = params.year : fulldate.year = today.getFullYear();
+    params.month ? fulldate.month = params.month : fulldate.month = today.getMonth();
+    params.date ? fulldate.date = params.date : fulldate.date = today.getDate();
+    // console.log(fulldate);
+    
+    // let view = new Date(year, month, date).toLocaleDateString('hu-HU', option);
+    // return view;
+    
+    let view2 = new Date(fulldate.year, fulldate.month, fulldate.date).toLocaleDateString('hu-HU', option);
+    return view2
+}
+
+
+console.log(mv3({year: 2021, month: 6, date: 23}, dateOptionLong));
+console.log(mv3({ month: 6 }, dateOptionLong));
+console.log(mv3({ date: 1 }, dateOptionMonth));
+
