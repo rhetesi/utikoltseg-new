@@ -15,7 +15,8 @@ import {
     dateMonthView,
     dateDateView,
     monthLength,
-    dateview
+    dateview,
+    dateOfPrint
 } from "./date.js";
 
 // basedatas object declaration

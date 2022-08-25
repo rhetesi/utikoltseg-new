@@ -36,3 +36,14 @@ export function dateview(params, viewoption) {
     let dateview = new Date(fulldate.year, fulldate.month, fulldate.date).toLocaleDateString('hu-HU', viewoption);
     return dateview
 }
+
+// Nyomtatvány készítésének dátuma
+export function dateOfPrint(param) {
+    let lastDate;
+    let dateOfPrint;
+
+    param === [param] ? lastDate = new Date(param[param.length - 1]) : lastDate = new Date(param);
+
+    lastDate >= today ? dateOfPrint = lastDate : dateOfPrint = today;
+    return dateOfPrint.toLocaleDateString('hu-HU', dateLongView);
+}
