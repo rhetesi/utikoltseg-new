@@ -23,6 +23,8 @@ import {
 import * as utiktgDateModule from "./date";
 // usage example: const actualMonth = utiktgDateModule.actualMonth();
 
+import { createAnyElement } from "./html";
+
 import jsPDF from "jspdf";
 import autoTable from 'jspdf-autotable';
 
