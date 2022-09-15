@@ -6,18 +6,22 @@ import {
     pricePerKm
 } from "./config.js";
 
-import {
-    today,
-    actualMonth,
-    beforeMonth,
-    afterMonth,
-    dateLongView,
-    dateMonthView,
-    dateDateView,
-    monthLength,
-    dateview,
-    dateOfPrint
-} from "./date.js";
+// import {
+//     today,
+//     actualMonth,
+//     beforeMonth,
+//     afterMonth,
+//     dateLongView,
+//     dateMonthView,
+//     dateDateView,
+//     monthLength,
+//     dateview,
+//     dateOfPrint
+// } from "./date.js";
+
+//Namespace import of date.js module
+import * as utiktgDateModule from "./date";
+// usage example: const actualMonth = utiktgDateModule.actualMonth();
 
 import jsPDF from "jspdf";
 import autoTable from 'jspdf-autotable';
