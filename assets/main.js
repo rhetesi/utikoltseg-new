@@ -20,10 +20,12 @@ import {
 // } from "./date.js";
 
 //Namespace import of date.js module
-import * as utiktgDateModule from "./date";
+import * as utiktgDateModule from "./date.js";
 // usage example: const actualMonth = utiktgDateModule.actualMonth();
 
-import { createAnyElement } from "./html";
+import {
+    createAnyElement
+} from "./html.js";
 
 import jsPDF from "jspdf";
 import autoTable from 'jspdf-autotable';
@@ -43,4 +45,3 @@ const monthSelect = document.querySelector('.monthselect');
 // const monthSelectionButton = document.querySelector('.monthselection');
 const daysPicker = document.querySelector('.dayspicker');
 const printButton = document.querySelector('.print');
-
