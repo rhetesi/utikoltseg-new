@@ -19,6 +19,9 @@ import {
     dateOfPrint
 } from "./date.js";
 
+import jsPDF from "jspdf";
+import autoTable from 'jspdf-autotable';
+
 // basedatas object declaration
 const basedatas = {
     name: '',
