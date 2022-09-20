@@ -14,8 +14,11 @@ import {
     createAnyElement
 } from "./html.js";
 
-import jsPDF from "jspdf";
-import autoTable from 'jspdf-autotable';
+// import jsPDF from "jspdf";
+// import autoTable from 'jspdf-autotable';
+
+// import jsPDF from "./jspdf.es.min.js";
+// import autoTable from "./jspdf.plugin.autotable.js";
 
 // basedatas object declaration
 const basedatas = {
@@ -32,3 +35,6 @@ const monthSelect = document.querySelector('.monthselect');
 // const monthSelectionButton = document.querySelector('.monthselection');
 const daysPicker = document.querySelector('.dayspicker');
 const printButton = document.querySelector('.print');
+
+console.log(monthSelect);
+monthSelect.insertAdjacentText('beforeend', 'hello');
