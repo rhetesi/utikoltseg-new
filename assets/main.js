@@ -36,5 +36,17 @@ const monthSelect = document.querySelector('.monthselect');
 const daysPicker = document.querySelector('.dayspicker');
 const printButton = document.querySelector('.print');
 
-console.log(monthSelect);
-monthSelect.insertAdjacentText('beforeend', 'hello');
+let htmlElement;
+
+htmlElement = `
+<div>
+<input type='radio' class='mSelect' id='beforeMonth' name='month' value='beforeMonth'>
+<label for='beforeMonth'>${utiktgDateModule.beforeMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}</label>
+<input type='radio' class='mSelect' id='actualMonth' name='month' value='actualMonth'>
+<label for='actualMonth'>${utiktgDateModule.actualMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}</label>
+</div>
+`;
+
+// console.log(monthSelect);
+// monthSelect.insertAdjacentText('beforeend', 'hello');
+monthSelect.insertAdjacentHTML('beforeend', htmlElement);
