@@ -50,3 +50,9 @@ htmlElement = `
 // console.log(monthSelect);
 // monthSelect.insertAdjacentText('beforeend', 'hello');
 monthSelect.insertAdjacentHTML('beforeend', htmlElement);
+
+const fm = document.querySelector('.firstMonth');
+const sm = document.querySelector('.secondMonth');
+
+fm.insertAdjacentText('beforeend', `${utiktgDateModule.beforeMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}`);
+sm.insertAdjacentText('beforeend', `${utiktgDateModule.actualMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}`);
