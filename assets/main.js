@@ -1,6 +1,6 @@
 'use strict';
 
-// import from config, dateoperations
+// import from config
 import {
     workCity,
     pricePerKm
@@ -16,6 +16,14 @@ import {
 
 // import jsPDF from "jspdf";
 // import autoTable from 'jspdf-autotable';
+
+/**
+ * pdf import as Global module format
+ */
+
+const {
+    jsPDF
+} = window.jspdf;
 
 // import jsPDF from "./jspdf.es.min.js";
 // import autoTable from "./jspdf.plugin.autotable.js";
@@ -56,3 +64,8 @@ const sm = document.querySelector('.secondMonth');
 
 fm.insertAdjacentText('beforeend', `${utiktgDateModule.beforeMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}`);
 sm.insertAdjacentText('beforeend', `${utiktgDateModule.actualMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}`);
+
+
+// const doc = new jsPDF();
+// doc.text("Hello world!", 10, 10);
+// doc.save("a4.pdf");
