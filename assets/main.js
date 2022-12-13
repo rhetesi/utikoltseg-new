@@ -7,7 +7,7 @@ import {
 } from "./config.js";
 
 //Namespace import of date.js module
-import * as utiktgDateModule from "./date.js";
+import * as dateModule from "./date.js";
 // usage example: const actualMonth = utiktgDateModule.actualMonth();
 
 import {
@@ -49,9 +49,9 @@ let htmlElement;
 htmlElement = `
 <div>
 <input type='radio' class='mSelect' id='beforeMonth' name='month' value='beforeMonth'>
-<label for='beforeMonth'>${utiktgDateModule.beforeMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}</label>
+<label for='beforeMonth'>${dateModule.beforeMonth.toLocaleDateString('hu-HU', dateModule.dateMonthView)}</label>
 <input type='radio' class='mSelect' id='actualMonth' name='month' value='actualMonth'>
-<label for='actualMonth'>${utiktgDateModule.actualMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}</label>
+<label for='actualMonth'>${dateModule.actualMonth.toLocaleDateString('hu-HU', dateModule.dateMonthView)}</label>
 </div>
 `;
 
@@ -62,10 +62,23 @@ monthSelect.insertAdjacentHTML('beforeend', htmlElement);
 const fm = document.querySelector('.firstMonth');
 const sm = document.querySelector('.secondMonth');
 
-fm.insertAdjacentText('beforeend', `${utiktgDateModule.beforeMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}`);
-sm.insertAdjacentText('beforeend', `${utiktgDateModule.actualMonth.toLocaleDateString('hu-HU', utiktgDateModule.dateMonthView)}`);
+fm.insertAdjacentText('beforeend', `${dateModule.beforeMonth.toLocaleDateString('hu-HU', dateModule.dateMonthView)}`);
+sm.insertAdjacentText('beforeend', `${dateModule.actualMonth.toLocaleDateString('hu-HU', dateModule.dateMonthView)}`);
+
+// daysPicker.insertAdjacentText('beforeend', 'Hello Roland');
 
 
+const addFullMonth = (month) => {
+    let viewMonth = month;
+    console.log(viewMonth);
+    for (let i = 1; i <= dateModule.monthLength(month); i = i + 1) {
+        // console.log(i);
+        // console.log(new Date(viewMonth.getFullYear(), viewMonth.getMonth(), i).toLocaleDateString('hu-HU', dateModule.dateLongView));
+        daysPicker.insertAdjacentText('beforeend', `${new Date(viewMonth.getFullYear(), viewMonth.getMonth(), i).toLocaleDateString('hu-HU', dateModule.dateLongView)}, `);
+    }
+}
+
+addFullMonth(dateModule.actualMonth);
 // const doc = new jsPDF();
 // doc.text("Hello world!", 10, 10);
 // doc.save("a4.pdf");
