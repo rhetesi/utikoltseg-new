@@ -67,14 +67,27 @@ sm.insertAdjacentText('beforeend', `${dateModule.actualMonth.toLocaleDateString(
 
 // daysPicker.insertAdjacentText('beforeend', 'Hello Roland');
 
-
+/* daysPicker
+1.) Create a table with
+1.1.) 2 columns header (date & checked)
+2.) generate as many rows as many days are in the selected month
+2.1.) in a row the first cell díisplay the month's dates from 1st to the last date
+2.2.) the rows second cell is a checkbox
+3.) apeend the generated elemnts to its parent (td -> tr; tr&th -> tbody&thead; tbody&thead -> table; table -> daysPickers)
+*/
 const addFullMonth = (month) => {
-    let viewMonth = month;
-    console.log(viewMonth);
+    // let viewMonth = month;
+
+    // tr.appendChild(createAnyElement('th'));
+    // daysPicker
+    //     .appendChild(createAnyElement('table'))
+    //     .appendChild(createAnyElement('thead'))
+    //     .appendChild(createAnyElement('tr'))
+    //     .appendChild(createAnyElement('th'));
+
     for (let i = 1; i <= dateModule.monthLength(month); i = i + 1) {
-        // console.log(i);
-        // console.log(new Date(viewMonth.getFullYear(), viewMonth.getMonth(), i).toLocaleDateString('hu-HU', dateModule.dateLongView));
-        daysPicker.insertAdjacentText('beforeend', `${new Date(viewMonth.getFullYear(), viewMonth.getMonth(), i).toLocaleDateString('hu-HU', dateModule.dateLongView)}, `);
+        // daysPicker.insertAdjacentText('beforeend', `${new Date(viewMonth.getFullYear(), viewMonth.getMonth(), i).toLocaleDateString('hu-HU', dateModule.dateLongView)}, `);
+        daysPicker.insertAdjacentText('beforeend', `${new Date(month.getFullYear(), month.getMonth(), i).toLocaleDateString('hu-HU', dateModule.dateLongView)}, `);
     }
 }
 
