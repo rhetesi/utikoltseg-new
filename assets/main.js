@@ -27,6 +27,7 @@ const {
 
 // import jsPDF from "./jspdf.es.min.js";
 // import autoTable from "./jspdf.plugin.autotable.js";
+// import 'jspdf-autotable';
 
 // basedatas object declaration
 const basedatas = {
