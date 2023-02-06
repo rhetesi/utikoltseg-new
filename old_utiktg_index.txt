@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lib\bootstrap-4.5.0-dist\css\bootstrap.min.css">
+    <title>Útiköltség elszámolás</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h3>Útiköltség elszámolás</h3>
+                <p>Verison: 1.0 (beta)</p>
+                <small class="form-text text-muted text-justify">
+                    Munkaválllalói útiköltség elszámolása, amennyiben a munkavállalló nem a közösségi közlekedést veszi
+                    igénybe a lakóhelye és munkahelye közötti közlekedéshez. Jogszabály nem írja elő a gépjármű
+                    igénybevételét,
+                    azaz a munkaválllaló akár gyalog is közlekedhet.
+                </small>
+                <p></p>
+                <form action="">
+                    <div class="form-group">
+                        <label for="">Név</label>
+                        <input type="text" name="employeename" class="form-control nyomtatvany">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Település</label>
+                        <input type="text" name="city" class="form-control nyomtatvany">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Postacím</label>
+                        <input type="text" name="address" class="form-control nyomtatvany">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Irányítószám</label>
+                        <input type="text" name="postcode" class="form-control nyomtatvany">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Gépjármű típusa</label>
+                        <input type="text" name="cartype" class="form-control nyomtatvany">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Gépjármű rendszáma</label>
+                        <input type="text" name="carplate" class="form-control nyomtatvany">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Lakóhely munkahely távolsága</label>
+                        <input type="text" name="distance" class="form-control nyomtatvany">
+                        <small class="form-text text-muted">
+                            Adja meg a lakóhelye és munkahelye közötti távolságot.
+                        </small>
+                    </div>
+                    <!-- Ez a div jelenleg nem kell, mert alapból 9,- Ft/km-el számolunk.
+                    <div class="form-group">
+                        <label for="">Elszámolható költségtérítés kiválasztása</label>
+                        <input type="text" name="hufperkm-input" class="form-control">
+                        <small class="form-text text-muted">
+                            Válassza ki az elszámolható útiköltség téírtés Ft/km mértékét, ami 9-15 között lehet.
+                        </small>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="">Elszámolás hónapjának kiválasztása</label>
+                        <select type="option" id="monthInput" name="month-input" class="form-control"></select>
+                        <!-- SOHA NE FELEJTSD EL LEZÁRNI A SELECT ELEMET!!!-->
+                        <small class="form-text text-muted">
+                            Válassza ki az elszámolás hónapját, amely az aktuális hónap vagy az azt megelőző hónap
+                            lehet.
+                        </small>
+                    </div>
+                    <div>
+                        <button id="chooseDay" type="button" class="btn btn-outline-primary">Napok kiválasztása</button>
+                        <!-- Sima button kell és NEM submit, ha az oldal újratöltését el akarom kerülni! -->
+                    </div>
+                    <div id="selectedMonth">
+                        <!--Ennek a div-nek az innerHTML-jét kell JS-szel átírni!-->
+                        <h6>Kiválasztott hónap</h6>
+
+                        <table id="gepjarmu" name="gepjarmuHasznalat" class="table table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <td>Dátum</td>
+                                    <td>Gépjármű használat</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+
+
+    <script src="js/utiktg.js"></script>
+</body>
+</body>
+
+</html>
