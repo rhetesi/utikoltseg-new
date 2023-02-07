@@ -1,47 +1,47 @@
 //Alapadatok definiálása (munkahely, Ft/km) költségtérítés megadása
-let workCity = "Hévíz";
-let forintKm = 9;
+// let workCity = "Hévíz";
+// let forintKm = 9;
 
 // Hónapok neveinek és alap hosszuknak tömbökbe töltése
-let monthName = ["január", "február", "március", "április", "május", "június", "július", "augusztus", "szeptember", "október", "november", "december"];
-let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+// let monthName = ["január", "február", "március", "április", "május", "június", "július", "augusztus", "szeptember", "október", "november", "december"];
+// let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 // Alap dátumok beállítása: rendszerdátum és rendszeridő lekérdezése, lekérdezett hónap értékének áttöltése a date változóba, aktuláis hónap hosszának betöltése
 // az actulMonthLength változóba, a monthLength tömbből a month változó értéke szerint kikeresett érték alapján
-let date = new Date();
-console.log(date);
-let today = date;
-let todayDay = today.getDate();
-let todayMonth = today.getMonth();
-let todayYear = today.getFullYear();
-let todayDate = today.setFullYear(todayYear, todayMonth, todayDay);
-let actualYear = date.getFullYear();
-let doneDate = todayDate;
+// let date = new Date();
+// console.log(date);
+// let today = date;
+// let todayDay = today.getDate();
+// let todayMonth = today.getMonth();
+// let todayYear = today.getFullYear();
+// let todayDate = today.setFullYear(todayYear, todayMonth, todayDay);
+// let actualYear = date.getFullYear();
+// let doneDate = todayDate;
 // console.log(doneDate); Itt még Number
 /*console.log(actualYear);
 tday = new Date(todayDate);
 console.log(tday);*/
-let leapYear = actualYear;
+// let leapYear = actualYear;
 
 //leapYear, azaz szökőév vizsgálata -- s elég egy sima if-else nem kell függvény (function) hozzá. Így szebb és rövidebb a kód!
-if (leapYear = ((leapYear % 4 == 00 && leapYear % 100 != 0) || leapYear % 400 == 0)) {
-    monthLength = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-} else monthLength = monthLength;
+// if (leapYear = ((leapYear % 4 == 00 && leapYear % 100 != 0) || leapYear % 400 == 0)) {
+//     monthLength = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+// } else monthLength = monthLength;
 
-console.log(actualYear);
+// console.log(actualYear);
 
-let month = date.getMonth();
-month = month - 1; // EZT KELL kivenni és megcsinálni a hónap választást!!!!!
-let actualMonth = month;
-let actualMonthLength = monthLength[month];
-let beforeMonth = actualMonth - 1;
+// let month = date.getMonth();
+// month = month - 1; // EZT KELL kivenni és megcsinálni a hónap választást!!!!!
+// let actualMonth = month;
+// let actualMonthLength = monthLength[month];
+// let beforeMonth = actualMonth - 1;
 
 //Január-ról decemberre visszalépés kezelése: változik a hónap, és az évszám is csökken!
-if (beforeMonth < 0) {
-    beforeMonth = 11;
-    actualYear = actualYear - 1;
-} else beforeMonth = beforeMonth;
-actualYear = actualYear
+// if (beforeMonth < 0) {
+//     beforeMonth = 11;
+//     actualYear = actualYear - 1;
+// } else beforeMonth = beforeMonth;
+// actualYear = actualYear
 
 // Előző és aktuális hónap értéke tömbbe töltése
 /*let monthValue = [
@@ -61,13 +61,13 @@ var dataToCalc;
 var lastSelectedDay;
 
 // createAnyElement függvény, bármely HTML elem létrehozásához
-function createAnyElement(name, attributes) {
-    let element = document.createElement(name);
-    for (let k in attributes) {
-        element.setAttribute(k, attributes[k]);
-    }
-    return element;
-}
+// function createAnyElement(name, attributes) {
+//     let element = document.createElement(name);
+//     for (let k in attributes) {
+//         element.setAttribute(k, attributes[k]);
+//     }
+//     return element;
+// }
 
 // Hónap napjainak megfelelő táblázat létrehozása, első oszlopban a napok innerHTML-be töltve, második oszlopban checkbox az adott nap kiválasztásához
 // A hónap táblázat sorait hozzá kell rendelni a class="table table-striped" osztályokhoz
