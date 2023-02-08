@@ -88,15 +88,6 @@ sm.insertAdjacentText(
 3.) apeend the generated elemnts to its parent (td -> tr; tr&th -> tbody&thead; tbody&thead -> table; table -> daysPickers)
 */
 const addFullMonth = (month) => {
-  // let viewMonth = month;
-
-  // tr.appendChild(createAnyElement('th'));
-  // daysPicker
-  //     .appendChild(createAnyElement('table'))
-  //     .appendChild(createAnyElement('thead'))
-  //     .appendChild(createAnyElement('tr'))
-  //     .appendChild(createAnyElement('th'));
-
   /*
     Ez volt a régi hónap lista készítő
 
@@ -142,6 +133,32 @@ const addFullMonth = (month) => {
   );
 
   for (let i = 1; i <= dateModule.monthLength(month); i = i + 1) {
+    let tr = createAnyElement("tr");
+
+    let td = createAnyElement("td");
+    td.insertAdjacentText("beforeend", i);
+    // td.insertAdjacentText(
+    //   "beforeend",
+    //   `${new Date(month.getFullYear(), month.getMonth(), i).toLocaleDateString(
+    //     "hu-HU",
+    //     dateModule.dateLongView
+    //   )}, `
+    // );
+    // tr.appendChild("td");
+    // td = createAnyElement("td", { class: "text-center" });
+    // let checkBox = createAnyElement("input", {
+    //   type: "checkbox",
+    //   class: "checkbox",
+    //   id: `${new Date(month.getFullYear(), month.getMonth(), i)}`,
+    //   name: `${new Date(month.getFullYear(), month.getMonth(), i)}`,
+    //   value: new Date(month.getFullYear(), month.getMonth(), i),
+    // });
+    // td.appendChild(checkBox);
+    tr.appendChild(td);
+    tableBody.appendChild(tr);
+  }
+
+  /* for (let i = 1; i <= dateModule.monthLength(month); i = i + 1) {
     // daysPicker.insertAdjacentText('beforeend', `${new Date(viewMonth.getFullYear(), viewMonth.getMonth(), i).toLocaleDateString('hu-HU', dateModule.dateLongView)}, `);
     daysPicker.insertAdjacentText(
       "beforeend",
@@ -150,7 +167,7 @@ const addFullMonth = (month) => {
         dateModule.dateLongView
       )}, `
     );
-  }
+    } */
 };
 
 addFullMonth(dateModule.actualMonth);
