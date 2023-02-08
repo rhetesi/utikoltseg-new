@@ -140,21 +140,34 @@ const addFullMonth = (month) => {
   );
 
   for (let i = 1; i <= dateModule.monthLength(month); i = i + 1) {
+    // egy táblázat sor készítése
     let tr = createAnyElement("tr");
 
+    // az adott táblázat sor elős cellájának elkészítése
     let td = createAnyElement("td");
-    td.insertAdjacentText("beforeend", `${new Date(month.getFullYear(), month.getMonth(), i).toLocaleDateString("hu-HU", dateModule.dateLongView)}`);
 
-    // tr.appendChild("td");
-    // td = createAnyElement("td", { class: "text-center" });
-    // let checkBox = createAnyElement("input", {
-    //   type: "checkbox",
-    //   class: "checkbox",
-    //   id: `${new Date(month.getFullYear(), month.getMonth(), i)}`,
-    //   name: `${new Date(month.getFullYear(), month.getMonth(), i)}`,
-    //   value: new Date(month.getFullYear(), month.getMonth(), i),
-    // });
-    // td.appendChild(checkBox);
+    // hogy maga a dátum is kattintható legyen, a cellába egy címke (label) kerül, mely az adott sor jelölőnégyzetével (checkbox) van összekötve
+    let label = createAnyElement("label", {
+      for: `${new Date(month.getFullYear(), month.getMonth(), i)}`
+    });
+    label.insertAdjacentText("beforeend", `${new Date(month.getFullYear(), month.getMonth(), i).toLocaleDateString("hu-HU", dateModule.dateLongView)}`);
+    td.appendChild(label);
+
+    // cella hozzáadása a sorhoz
+    tr.appendChild(td);
+
+    // adott tábláazt sorba jelöőnégyzet készítése, s tulajdonságainka beállítása
+    td = createAnyElement("td", {
+      class: "text-center"
+    });
+    let checkbox = createAnyElement("input", {
+      type: "checkbox",
+      class: "checkbox",
+      id: `${new Date(month.getFullYear(), month.getMonth(), i)}`,
+      value: `${new Date(month.getFullYear(), month.getMonth(), i)}`
+    });
+    td.appendChild(checkbox);
+
     tr.appendChild(td);
     tableBody.appendChild(tr);
   }
