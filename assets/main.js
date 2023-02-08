@@ -1,13 +1,18 @@
 "use strict";
 
 // import from config
-import { workCity, pricePerKm } from "./config.js";
+import {
+  workCity,
+  pricePerKm
+} from "./config.js";
 
 //Namespace import of date.js module
 import * as dateModule from "./date.js";
 // usage example: const actualMonth = utiktgDateModule.actualMonth();
 
-import { createAnyElement } from "./html.js";
+import {
+  createAnyElement
+} from "./html.js";
 
 // import jsPDF from "jspdf";
 // import autoTable from 'jspdf-autotable';
@@ -16,7 +21,9 @@ import { createAnyElement } from "./html.js";
  * pdf import as Global module format
  */
 
-const { jsPDF } = window.jspdf;
+const {
+  jsPDF
+} = window.jspdf;
 
 // import jsPDF from "./jspdf.es.min.js";
 // import autoTable from "./jspdf.plugin.autotable.js";
@@ -136,14 +143,8 @@ const addFullMonth = (month) => {
     let tr = createAnyElement("tr");
 
     let td = createAnyElement("td");
-    td.insertAdjacentText("beforeend", i);
-    // td.insertAdjacentText(
-    //   "beforeend",
-    //   `${new Date(month.getFullYear(), month.getMonth(), i).toLocaleDateString(
-    //     "hu-HU",
-    //     dateModule.dateLongView
-    //   )}, `
-    // );
+    td.insertAdjacentText("beforeend", `${new Date(month.getFullYear(), month.getMonth(), i).toLocaleDateString("hu-HU", dateModule.dateLongView)}`);
+
     // tr.appendChild("td");
     // td = createAnyElement("td", { class: "text-center" });
     // let checkBox = createAnyElement("input", {
