@@ -84,16 +84,6 @@ sm.insertAdjacentText(
   )}`
 );
 
-// daysPicker.insertAdjacentText('beforeend', 'Hello Roland');
-
-/* daysPicker
-1.) Create a table with
-1.1.) 2 columns header (date & checked)
-2.) generate as many rows as many days are in the selected month
-2.1.) in a row the first cell díisplay the month's dates from 1st to the last date
-2.2.) the rows second cell is a checkbox
-3.) apeend the generated elemnts to its parent (td -> tr; tr&th -> tbody&thead; tbody&thead -> table; table -> daysPickers)
-*/
 const addFullMonth = (month) => {
 
   let table = document.querySelector(".daysPickerTable");
