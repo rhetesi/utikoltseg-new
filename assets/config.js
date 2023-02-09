@@ -1,4 +1,4 @@
-const workCity = 'Hévíz';
-const pricePerKm = 15;
+const workCity = "Hévíz";
+const pricePerKm = 18;
 
 export { workCity, pricePerKm };

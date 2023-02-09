@@ -15,99 +15,112 @@
   </head>
 
   <body>
-    <main>
-      <h1>Útiköltség elszámolás készítése</h1>
-      <p></p>
-      <div class="basedatas">
-        <div class="form-group">
-          <label for="name">Név<small class="compulsory">*</small></label>
-          <input
-            type="text"
-            class="name"
-            id="name"
-            placeholder="Kérem, adja meg a teljes nevét!"
-            required
-          />
+    <main clas="container">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <h2>Útiköltség elszámolás készítése</h2>
+          <p></p>
+          <form action="">
+            <div class="basedatas">
+              <div class="form-group">
+                <label for="name">Név<small class="compulsory">*</small></label>
+                <input
+                  type="text"
+                  class="form-control print name"
+                  id="name"
+                  placeholder="Kérem, adja meg a teljes nevét!"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="city"
+                  >Település<small class="compulsory">*</small></label
+                >
+                <input
+                  type="text"
+                  class="form-control print city"
+                  id="city"
+                  placeholder="Kérem, adja meg a település nevét, ahol lakik!"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="address"
+                  >Postacím<small class="compulsory">*</small></label
+                >
+                <input
+                  type="text"
+                  class="form-control print address"
+                  id="address"
+                  placeholder="Kérem, adja meg a postacímét (utca, házszám, emelet, ajtó)!"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="distance"
+                  >Távolság<small class="compulsory">*</small></label
+                >
+                <input
+                  type="number"
+                  class="form-control print distance"
+                  id="distance"
+                  placeholder="Kérem, adja meg a lakóhelye és munkahelye közötti távolságot!"
+                  min="0"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="vehicle">Gépjármű típusa</label>
+                <input
+                  type="text"
+                  class="form-control print vehicle"
+                  id="vehicle"
+                  placeholder="Itt adhatja meg, hogy milyen gépjárművel utazik"
+                />
+              </div>
+              <div class="form-group">
+                <label for="plate">Gépjármű rendszáma</label>
+                <input
+                  type="text"
+                  class="form-control print plate"
+                  id="plate"
+                  placeholder="Itt adhatja meg gépjárműve rendszámát"
+                />
+              </div>
+              <small class="compulsory"
+                >A csillaggal jelölt mezők kitöltése kötelező!</small
+              >
+            </div>
+            <div class="months">
+              <h3>
+                Kérem válassza ki, melyik hónapra kívánja kitölteni a
+                nyomtatványt
+              </h3>
+              <div class="monthselect">
+                <div class="mSelect firstMonth"></div>
+                <div class="mSelect secondMonth"></div>
+              </div>
+              <!-- <button class="monthselection">Ez kell-e majd a végén?</button> -->
+            </div>
+            <div class="dayspickerDiv">
+              <table class="table table-striped text-center daysPickerTable">
+                <thead class="daysPickerTableHead">
+                  <tr>
+                    <th class="dayOfMonthColumn"></th>
+                    <th class="selectorColumn">Kiválasztaás</th>
+                  </tr>
+                </thead>
+                <tbody class="dayspicker"></tbody>
+              </table>
+            </div>
+            <button type="submit" class="btn btn-outline-primary print">
+              Nyomtat(ható .PDF készítése)
+            </button>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="city">Település<small class="compulsory">*</small></label>
-          <input
-            type="text"
-            class="city"
-            id="city"
-            placeholder="Kérem, adja meg a település nevét, ahol lakik!"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="address"
-            >Postacím<small class="compulsory">*</small></label
-          >
-          <input
-            type="text"
-            class="address"
-            id="address"
-            placeholder="Kérem, adja meg a postacímét (utca, házszám, emelet, ajtó)!"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="distance"
-            >Távolság<small class="compulsory">*</small></label
-          >
-          <input
-            type="number"
-            class="distance"
-            id="distance"
-            placeholder="Kérem, adja meg a lakóhelye és munkahelye közötti távolságot!"
-            min="0"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="vehicle">Gépjármű típusa</label>
-          <input
-            type="text"
-            class="vehicle"
-            id="vehicle"
-            placeholder="Itt adhatja meg, hogy milyen gépjárművel utazik"
-          />
-        </div>
-        <div class="form-group">
-          <label for="plate">Gépjármű rendszáma</label>
-          <input
-            type="text"
-            class="plate"
-            id="plate"
-            placeholder="Itt adhatja meg gépjárműve rendszámát"
-          />
-        </div>
-        <small class="compulsory"
-          >A csillaggal jelölt mezők kitöltése kötelező!</small
-        >
+        <div class="col-3"></div>
       </div>
-      <div class="months">
-        <h3>
-          Kérem válassza ki, melyik hónapra kívánja kitölteni a nyomtatványt
-        </h3>
-        <div class="monthselect">
-          <div class="mSelect firstMonth"></div>
-          <div class="mSelect secondMonth"></div>
-        </div>
-        <!-- <button class="monthselection">Ez kell-e majd a végén?</button> -->
-      </div>
-      <div class="dayspickerDiv">
-        <table clas="daysPickerTable">
-          <thead class="daysPickerTableHead">
-            <tr>
-              <th class="dayOfMonthColumn"></th>
-              <th class="selectorColumn">Kiválasztaás</th>
-            </tr>
-          </thead>
-          <tbody class="dayspicker"></tbody>
-        </table>
-      </div>
-      <button type="submit" class="print">Nyomtat</button>
     </main>
 
     <script
