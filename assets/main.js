@@ -1,33 +1,19 @@
 "use strict";
 
 // import from config
-import {
-  workCity,
-  pricePerKm
-} from "./config.js";
+import { workCity, pricePerKm } from "./config.js";
 
 //Namespace import of date.js module
 import * as dateModule from "./date.js";
-// usage example: const actualMonth = utiktgDateModule.actualMonth();
+// usage example: const actualMonth = dateModule.actualMonth();
 
-import {
-  createAnyElement
-} from "./html.js";
-
-// import jsPDF from "jspdf";
-// import autoTable from 'jspdf-autotable';
+import { createAnyElement } from "./html.js";
 
 /**
  * pdf import as Global module format
  */
 
-const {
-  jsPDF
-} = window.jspdf;
-
-// import jsPDF from "./jspdf.es.min.js";
-// import autoTable from "./jspdf.plugin.autotable.js";
-// import 'jspdf-autotable';
+const { jsPDF } = window.jspdf;
 
 // basedatas object declaration
 const basedatas = {
@@ -62,8 +48,6 @@ htmlElement = `
 </div>
 `;
 
-// console.log(monthSelect);
-// monthSelect.insertAdjacentText('beforeend', 'hello');
 monthSelect.insertAdjacentHTML("beforeend", htmlElement);
 
 const fm = document.querySelector(".firstMonth");
@@ -85,10 +69,7 @@ sm.insertAdjacentText(
 );
 
 const addFullMonth = (month) => {
-
-  let table = document.querySelector(".daysPickerTable");
-  let tableHead = document.querySelector(".daysPickerTableHead");
-  let tableHeadMonth = tableHead.querySelector(".dayOfMonthColumn");
+  let tableHeadMonth = document.querySelector(".dayOfMonthColumn");
   let tableBody = document.querySelector(".dayspicker");
 
   tableHeadMonth.insertAdjacentText(
@@ -111,9 +92,12 @@ const addFullMonth = (month) => {
 
     // hogy maga a dátum is kattintható legyen, a cellába egy címke (label) kerül, mely az adott sor jelölőnégyzetével (checkbox) van összekötve
     let label = createAnyElement("label", {
-      for: `${dpdate}`
+      for: `${dpdate}`,
     });
-    label.insertAdjacentText("beforeend", `${dpdate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`);
+    label.insertAdjacentText(
+      "beforeend",
+      `${dpdate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`
+    );
     td.appendChild(label);
 
     // cella hozzáadása a sorhoz
@@ -121,20 +105,19 @@ const addFullMonth = (month) => {
 
     // adott tábláazt sorba jelöőnégyzet készítése, s tulajdonságainak beállítása
     td = createAnyElement("td", {
-      class: "text-center"
+      class: "text-center",
     });
     let checkbox = createAnyElement("input", {
       type: "checkbox",
       class: "checkbox",
       id: `${dpdate}`,
-      value: `${dpdate}`
+      value: `${dpdate}`,
     });
     td.appendChild(checkbox);
 
     tr.appendChild(td);
     tableBody.appendChild(tr);
   }
-
 };
 
 addFullMonth(dateModule.actualMonth);
