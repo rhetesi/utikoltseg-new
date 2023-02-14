@@ -124,3 +124,10 @@ addFullMonth(dateModule.actualMonth);
 // const doc = new jsPDF();
 // doc.text("Hello world!", 10, 10);
 // doc.save("a4.pdf");
+
+// getDataFromInputFieldsWhetClickToPrintButton - main Print funciton
+// fill the properties values of basedatas Object if those are empty - 1st function
+// create a dateArray, ang push the selected dates of orm into it - 2nd function
+// do some math - multiply the dateArray length with the pricePerKm variable's value -> get the value of the fullPrice variable - 3rd function
+// select the printDay, if today < value of the last item of the dateArray, then the later, else today
+// create a printView
