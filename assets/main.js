@@ -126,8 +126,31 @@ addFullMonth(dateModule.actualMonth);
 // doc.save("a4.pdf");
 
 // getDataFromInputFieldsWhetClickToPrintButton - main Print funciton
+
 // fill the properties values of basedatas Object if those are empty - 1st function
+// getStringsToPrint("input.nyomtatvany", stringsToPrint); // a nyomtatvány többi input field-jét RENDELD HOZZÁ a "nyomtatvany" osztályhoz!
+/* function getStringsToPrint(from, data) {
+  let inputs = document.querySelectorAll(from);
+  for (let i = 0; i < inputs.length; i++) {
+      data[inputs[i].name] = inputs[i].value;
+  }
+  return data;
+} */
+
 // create a dateArray, ang push the selected dates of orm into it - 2nd function
+// getDataToPrint("input.checkbox", dataToPrint);
+/* function getDataToPrint(from, data) {
+  let inputs = document.querySelectorAll(from);
+  for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].checked) {
+          data.push(inputs[i].name);
+      }
+  }
+  return data;
+} */
+
 // do some math - multiply the dateArray length with the pricePerKm variable's value -> get the value of the fullPrice variable - 3rd function
+
 // select the printDay, if today < value of the last item of the dateArray, then the later, else today
+
 // create a printView
