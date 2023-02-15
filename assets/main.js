@@ -29,7 +29,7 @@ const basedatas = {
 const monthSelect = document.querySelector(".monthselect");
 // const monthSelectionButton = document.querySelector('.monthselection');
 const daysPicker = document.querySelector(".dayspicker");
-const printButton = document.querySelector(".print");
+const printButton = document.querySelector(".printbutton");
 
 let htmlElement;
 
@@ -154,3 +154,55 @@ addFullMonth(dateModule.actualMonth);
 // select the printDay, if today < value of the last item of the dateArray, then the later, else today
 
 // create a printView
+
+printButton.addEventListener("click", function () {
+  /*   Itt kell meghívni a többi függvényt!
+
+ */
+  fillBaseDatas();
+  console.log(basedatas);
+});
+
+const fillBaseDatas = () => {
+  /* let inputs = document.querySelectorAll(from);
+  for (let i = 0; i < inputs.length; i++) {
+    data[inputs[i].name] = inputs[i].value;
+  }
+  return data; */
+
+  /* const inOrOut = (safe, inout) => {
+    for (let key in safe) {
+        if (Object.hasOwn(safe, key)) {
+            if (key.includes('f')) {
+                const fieldValue = document.querySelector(`.${key}`).value;
+                inout ? safe[key] = +fieldValue : safe[key] = safe[key] - +fieldValue;
+                localStorage.setItem(key, JSON.stringify(safe[key]));
+            }
+        }
+    };
+    return;
+}; */
+
+  /*
+  basedatas = {
+  name: "",
+  city: "",
+  address: "",
+  distance: "",
+  vehicle: "",
+  plate: "",
+}
+
+Ha a basedatas objektum tulajdonságai üresek, akkor menj végig a HTM input mezőin és a basedata objektum megfelelő mezőihez rendeld hozzá a nyomtatvány mezők értékeit.
+
+  */
+
+  for (let key in basedatas) {
+    if (Object.hasOwn(basedatas, key)) {
+      const fieldValue = document.querySelector(`.${key}`).value;
+      console.log(fieldValue);
+      console.log(basedatas);
+    }
+  }
+  return;
+};
