@@ -172,3 +172,7 @@ const fillBaseDatas = () => {
   }
   return;
 };
+
+const fillDates = () => {
+  let datesArray = [];
+};
