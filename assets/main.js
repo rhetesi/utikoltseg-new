@@ -20,7 +20,7 @@ const basedatas = {
   name: "",
   city: "",
   address: "",
-  distance: "",
+  tavolsag: "",
   vehicle: "",
   plate: "",
 };
@@ -172,6 +172,8 @@ const fillBaseDatas = () => {
   }
   return;
 };
+
+console.log(basedatas);
 
 const fillDates = () => {
   let datesArray = [];
