@@ -1,19 +1,26 @@
 "use strict";
 
 // import from config
-import { workCity, pricePerKm } from "./config.js";
+import {
+  workCity,
+  pricePerKm
+} from "./config.js";
 
 //Namespace import of date.js module
 import * as dateModule from "./date.js";
 // usage example: const actualMonth = dateModule.actualMonth();
 
-import { createAnyElement } from "./html.js";
+import {
+  createAnyElement
+} from "./html.js";
 
 /**
  * pdf import as Global module format
  */
 
-const { jsPDF } = window.jspdf;
+const {
+  jsPDF
+} = window.jspdf;
 
 // basedatas object declaration
 const basedatas = {
@@ -160,7 +167,7 @@ printButton.addEventListener("click", function () {
 
  */
   fillBaseDatas();
-  console.log(basedatas);
+  console.log(basedatas); // itt még megvannak az adatok
 });
 
 const fillBaseDatas = () => {
@@ -169,11 +176,11 @@ const fillBaseDatas = () => {
       const fieldValue = document.querySelector(`.${key}`).value;
       basedatas[key] = fieldValue;
     }
-  }
-  return;
+  };
+  // return;
 };
 
-console.log(basedatas);
+// console.log(basedatas);
 
 const fillDates = () => {
   let datesArray = [];
