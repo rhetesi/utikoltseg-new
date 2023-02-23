@@ -166,7 +166,7 @@ printButton.addEventListener("click", function () {
 
   // const pdfDoc = new jsPDF();
   // pdfDoc.text(`${printDate}`, 10, 10);
-  // pdfDoc.save('pdfName.pdf');
+  // pdfDoc.save(`${pdfName}.pdf`);
 });
 
 const fillBaseDatas = () => {
