@@ -175,18 +175,35 @@ printButton.addEventListener("click", function () {
     (printDate = new Date(datesArray[datesArray.length - 1])) :
     (printDate = dateModule.today);
 
-  console.log(printDate);
+  // console.log(printDate);
 
   pdfName = `Útiköltség_${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndNumericMonthView)}_${basedatas.name}`;
-  console.log(pdfName);
+  // console.log(pdfName);
 
   const pdfDoc = new jsPDF();
   pdfDoc.setFontSize(16);
   pdfDoc.setFont("helvetica", "bold");
-  pdfDoc.text(`Útiköltség elszámolás`, 105, 10, "center"); // text("szöveg", bal oldaltól számított távolság, lap tetejétől számított távolság, forgatás(opc), forgatás(opc), igazítás) -> itt a laptól számított 105 mm-hez igazítja középre a szöveget
+  pdfDoc.text(`Munkába járás elszámolása`, 105, 10, "center"); // text("szöveg", bal oldaltól számított távolság, lap tetejétől számított távolság, forgatás(opc), forgatás(opc), igazítás) -> itt a laptól számított 105 mm-hez igazítja középre a szöveget
   pdfDoc.setFontSize(12);
   pdfDoc.setFont("helvetica", "normal");
+  // készítés éve és hónapja
+  pdfDoc.text(`${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`, 105, 16, "center");
+  pdfDoc.text(`Az elszámolás alapja a 39/2010. (II. 26.) és 16/2023. (I. 27.) számú Kormányrendeletek, mely alapján gépjármüre fizethetö 30,- Ft/km költségtérítés.`, 10, 25, {
+    maxWidth: 190,
+    align: "left"
+  });
+  // név és lakcím
+  pdfDoc.text(`Név: ${basedatas.name}`, 10, 40);
+  pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
+  // Személygépkocsi típusa és forgami rendszáma
+  pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 10, 50);
+  pdfDoc.text(`forgalmi rendszám: ${basedatas.plate}`, 105, 50);
+  //Táblázat
+  // Táblázat fejléc: dátum, indulás-érkezés (helységnév), km/fő, összeg
+  // Táblázatsorok: összeg = tableRowSum
+  // Táblázat lábléc: -, összesen, összes km, összes összeg (sumTotal)
   pdfDoc.text(`Hévíz, ${printDate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`, 10, 100);
+  // aláírások: munkahelyi vezető, munkavállaló
   pdfDoc.save(`${pdfName}.pdf`);
 });
 
