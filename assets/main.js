@@ -167,6 +167,7 @@ printButton.addEventListener("click", function () {
 
  */
   fillBaseDatas();
+  fillDates();
   console.log(basedatas); // itt még megvannak az adatok
 });
 
@@ -184,4 +185,5 @@ const fillBaseDatas = () => {
 
 const fillDates = () => {
   let datesArray = [];
+  console.log('Hello!');
 };
