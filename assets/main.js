@@ -1,19 +1,26 @@
 "use strict";
 
 // import from config
-import { workCity, pricePerKm } from "./config.js";
+import {
+  workCity,
+  pricePerKm
+} from "./config.js";
 
 //Namespace import of date.js module
 import * as dateModule from "./date.js";
 // usage example: const actualMonth = dateModule.actualMonth();
 
-import { createAnyElement } from "./html.js";
+import {
+  createAnyElement
+} from "./html.js";
 
 /**
  * pdf import as Global module format
  */
 
-const { jsPDF } = window.jspdf;
+const {
+  jsPDF
+} = window.jspdf;
 
 // basedatas object declaration
 const basedatas = {
@@ -125,15 +132,15 @@ const addFullMonth = (month) => {
 // Adding viewMonth by defining which month is selected
 let viewMonth;
 dateModule.today.getDate() >
-new Date(
-  dateModule.today.getFullYear(),
-  dateModule.today.getMonth(),
-  15
-).getDate()
-  ? (viewMonth = dateModule.actualMonth)
-  : (viewMonth = dateModule.beforeMonth);
+  new Date(
+    dateModule.today.getFullYear(),
+    dateModule.today.getMonth(),
+    15
+  ).getDate() ?
+  (viewMonth = dateModule.actualMonth) :
+  (viewMonth = dateModule.beforeMonth);
 
-console.log(viewMonth);
+// console.log(viewMonth);
 addFullMonth(viewMonth);
 
 // const doc = new jsPDF();
@@ -155,13 +162,13 @@ printButton.addEventListener("click", function () {
   console.log(basedatas);
   console.log(datesArray);
 
-  new Date(datesArray[datesArray.length - 1]) > dateModule.today
-    ? (printDate = new Date(datesArray[datesArray.length - 1]))
-    : (printDate = dateModule.today);
+  new Date(datesArray[datesArray.length - 1]) > dateModule.today ?
+    (printDate = new Date(datesArray[datesArray.length - 1])) :
+    (printDate = dateModule.today);
 
   console.log(printDate);
 
-  pdfName = `${basedatas.name}_${viewMonth.getMonth()}`;
+  pdfName = `Útiköltség_${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndNumericMonthView)}_${basedatas.name}`;
   console.log(pdfName);
 
   // const pdfDoc = new jsPDF();

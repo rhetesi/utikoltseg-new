@@ -23,6 +23,10 @@ export const dateYearAndMonthViev = {
   year: "numeric",
   month: "long",
 };
+export const dateYearAndNumericMonthView = {
+  year: "numeric",
+  month: "numeric",
+};
 export const dateMonthView = {
   month: "long",
 };
@@ -43,15 +47,15 @@ export const monthLength = (month) => {
 export function dateview(params, viewoption) {
   let fulldate = {};
 
-  params.year
-    ? (fulldate.year = params.year)
-    : (fulldate.year = today.getFullYear());
-  params.month
-    ? (fulldate.month = params.month)
-    : (fulldate.month = today.getMonth());
-  params.date
-    ? (fulldate.date = params.date)
-    : (fulldate.date = today.getDate());
+  params.year ?
+    (fulldate.year = params.year) :
+    (fulldate.year = today.getFullYear());
+  params.month ?
+    (fulldate.month = params.month) :
+    (fulldate.month = today.getMonth());
+  params.date ?
+    (fulldate.date = params.date) :
+    (fulldate.date = today.getDate());
 
   let dateview = new Date(
     fulldate.year,
@@ -66,9 +70,9 @@ export function dateOfPrint(param) {
   let lastDate;
   let dateOfPrint;
 
-  param === [param]
-    ? (lastDate = new Date(param[param.length - 1]))
-    : (lastDate = new Date(param));
+  param === [param] ?
+    (lastDate = new Date(param[param.length - 1])) :
+    (lastDate = new Date(param));
 
   lastDate >= today ? (dateOfPrint = lastDate) : (dateOfPrint = today);
   return dateOfPrint.toLocaleDateString("hu-HU", dateLongView);
