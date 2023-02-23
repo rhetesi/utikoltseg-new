@@ -143,10 +143,6 @@ dateModule.today.getDate() >
 // console.log(viewMonth);
 addFullMonth(viewMonth);
 
-// const doc = new jsPDF();
-// doc.text("Hello world!", 10, 10);
-// doc.save("a4.pdf");
-
 // do some math - multiply the dateArray length with the pricePerKm variable's value -> get the value of the fullPrice variable - 3rd function
 
 // create a printView
