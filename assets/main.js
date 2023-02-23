@@ -1,26 +1,19 @@
 "use strict";
 
 // import from config
-import {
-  workCity,
-  pricePerKm
-} from "./config.js";
+import { workCity, pricePerKm } from "./config.js";
 
 //Namespace import of date.js module
 import * as dateModule from "./date.js";
 // usage example: const actualMonth = dateModule.actualMonth();
 
-import {
-  createAnyElement
-} from "./html.js";
+import { createAnyElement } from "./html.js";
 
 /**
  * pdf import as Global module format
  */
 
-const {
-  jsPDF
-} = window.jspdf;
+const { jsPDF } = window.jspdf;
 
 // basedatas object declaration
 const basedatas = {
@@ -33,11 +26,12 @@ const basedatas = {
 };
 
 // select some HTML element
-const monthSelect = document.querySelector(".monthselect");
+// const monthSelect = document.querySelector(".monthselect"); // hóanpválasztáshoz
 // const monthSelectionButton = document.querySelector('.monthselection');
-const daysPicker = document.querySelector(".dayspicker");
+// const daysPicker = document.querySelector(".dayspicker"); // Ez nem is kell
 const printButton = document.querySelector(".printbutton");
 
+/* Hónapválasztó HTMl elemek beszúrása, későbbi fejlesztéshez!!!
 let htmlElement;
 
 htmlElement = `
@@ -73,8 +67,9 @@ sm.insertAdjacentText(
     "hu-HU",
     dateModule.dateMonthView
   )}`
-);
+); */
 
+// Arrow function to add the selected month's dates w/ checkboxes to HTML
 const addFullMonth = (month) => {
   let tableHeadMonth = document.querySelector(".dayOfMonthColumn");
   let tableBody = document.querySelector(".dayspicker");
@@ -127,7 +122,20 @@ const addFullMonth = (month) => {
   }
 };
 
-addFullMonth(dateModule.actualMonth);
+// Adding viewMonth by defining which month is selected
+let viewMonth;
+dateModule.today.getDate() >
+new Date(
+  dateModule.today.getFullYear(),
+  dateModule.today.getMonth(),
+  15
+).getDate()
+  ? (viewMonth = dateModule.actualMonth)
+  : (viewMonth = dateModule.beforeMonth);
+
+console.log(viewMonth);
+addFullMonth(viewMonth);
+
 // const doc = new jsPDF();
 // doc.text("Hello world!", 10, 10);
 // doc.save("a4.pdf");
@@ -163,12 +171,20 @@ addFullMonth(dateModule.actualMonth);
 // create a printView
 
 printButton.addEventListener("click", function () {
-  /*   Itt kell meghívni a többi függvényt!
+  //   Itt kell meghívni a többi függvényt!
 
- */
+  let datesArray = [];
+  let printDate;
   fillBaseDatas();
-  fillDates();
-  console.log(basedatas); // itt még megvannak az adatok
+  fillDates(datesArray);
+  console.log(basedatas);
+  console.log(datesArray);
+
+  new Date(datesArray[datesArray.length - 1]) > dateModule.today
+    ? (printDate = new Date(datesArray[datesArray.length - 1]))
+    : (printDate = dateModule.today);
+
+  console.log(printDate);
 });
 
 const fillBaseDatas = () => {
@@ -177,13 +193,23 @@ const fillBaseDatas = () => {
       const fieldValue = document.querySelector(`.${key}`).value;
       basedatas[key] = fieldValue;
     }
-  };
+  }
   // return;
 };
 
-// console.log(basedatas);
+const fillDates = (arr) => {
+  // Nézd meg, hogy milyen más módon tudod kigyűjteni kiválasztott dátumokat!!!
+  // for (let i = 1; i <= dateModule.monthLength(month); i = i + 1) {
+  //   const dateValue = document.querySelector();
+  // }
+  // console.log("Hello!");
 
-const fillDates = () => {
-  let datesArray = [];
-  console.log('Hello!');
+  const dates = document.querySelectorAll("input.checkbox");
+
+  for (let i = 0; i < dates.length; i = i + 1) {
+    if (dates[i].checked) {
+      arr.push(dates[i].value);
+    }
+  }
+  return;
 };
