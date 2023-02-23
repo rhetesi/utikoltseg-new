@@ -27,7 +27,7 @@ const basedatas = {
   name: "",
   city: "",
   address: "",
-  tavolsag: "",
+  homeWorkDistance: "",
   vehicle: "",
   plate: "",
 };
@@ -112,7 +112,7 @@ const addFullMonth = (month) => {
     // cella hozzáadása a sorhoz
     tr.appendChild(td);
 
-    // adott tábláazt sorba jelöőnégyzet készítése, s tulajdonságainak beállítása
+    // adott táblázat sorba jelöőnégyzet készítése, s tulajdonságainak beállítása
     td = createAnyElement("td", {
       class: "text-center",
     });
@@ -153,10 +153,23 @@ printButton.addEventListener("click", function () {
   let datesArray = [];
   let printDate;
   let pdfName;
+
+  let homeWorkDistance = document.querySelector("input.homeWorkDistance").value;
+
+  let tableRowSum = homeWorkDistance * pricePerKm;
+
   fillBaseDatas();
   fillDates(datesArray);
-  console.log(basedatas);
-  console.log(datesArray);
+
+  // console.log(basedatas);
+  // console.log(datesArray);
+
+  let sumTotal = datesArray.length * homeWorkDistance * pricePerKm;
+  // tableRowSum = homeWorkDistance * pricePerKm;
+  // console.log(tableRowSum);
+
+  // sumTotal = datesArray.length * homeWorkDistance * pricePerKm;
+  // console.log(sumTotal);
 
   new Date(datesArray[datesArray.length - 1]) > dateModule.today ?
     (printDate = new Date(datesArray[datesArray.length - 1])) :
