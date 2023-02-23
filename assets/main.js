@@ -180,9 +180,14 @@ printButton.addEventListener("click", function () {
   pdfName = `Útiköltség_${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndNumericMonthView)}_${basedatas.name}`;
   console.log(pdfName);
 
-  // const pdfDoc = new jsPDF();
-  // pdfDoc.text(`${printDate}`, 10, 10);
-  // pdfDoc.save(`${pdfName}.pdf`);
+  const pdfDoc = new jsPDF();
+  pdfDoc.setFontSize(16);
+  pdfDoc.setFont("helvetica", "bold");
+  pdfDoc.text(`Útiköltség elszámolás`, 105, 10, "center"); // text("szöveg", bal oldaltól számított távolság, lap tetejétől számított távolság, forgatás(opc), forgatás(opc), igazítás) -> itt a laptól számított 105 mm-hez igazítja középre a szöveget
+  pdfDoc.setFontSize(12);
+  pdfDoc.setFont("helvetica", "normal");
+  pdfDoc.text(`Hévíz, ${printDate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`, 10, 100);
+  pdfDoc.save(`${pdfName}.pdf`);
 });
 
 const fillBaseDatas = () => {
