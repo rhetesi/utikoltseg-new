@@ -202,6 +202,10 @@ printButton.addEventListener("click", function () {
   // Táblázat fejléc: dátum, indulás-érkezés (helységnév), km/fő, összeg
   // Táblázatsorok: összeg = tableRowSum
   // Táblázat lábléc: -, összesen, összes km, összes összeg (sumTotal)
+  pdfDoc.autoTable({
+    html: '#my-table'
+  });
+  // keltezés
   pdfDoc.text(`Hévíz, ${printDate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`, 10, 100);
   // aláírások: munkahelyi vezető, munkavállaló
   pdfDoc.save(`${pdfName}.pdf`);
