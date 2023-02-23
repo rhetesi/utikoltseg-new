@@ -149,6 +149,7 @@ printButton.addEventListener("click", function () {
 
   let datesArray = [];
   let printDate;
+  let pdfName;
   fillBaseDatas();
   fillDates(datesArray);
   console.log(basedatas);
@@ -159,6 +160,13 @@ printButton.addEventListener("click", function () {
     : (printDate = dateModule.today);
 
   console.log(printDate);
+
+  pdfName = `${basedatas.name}_${viewMonth.getMonth()}`;
+  console.log(pdfName);
+
+  // const pdfDoc = new jsPDF();
+  // pdfDoc.text(`${printDate}`, 10, 10);
+  // pdfDoc.save('pdfName.pdf');
 });
 
 const fillBaseDatas = () => {
