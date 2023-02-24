@@ -211,13 +211,26 @@ printButton.addEventListener("click", function () {
   // Táblázatsorok: összeg = tableRowSum
   // Táblázat lábléc: -, összesen, összes km, összes összeg (sumTotal)
 
-  /* 
+  /*
   
   for (var i = 1; i <= 12; i++) {
   doc.text(20, 30 + i * 10, i + " x " + multiplier + " = ___");
 }
-  
+
   */
+
+  // read the manual of jsPDF cells (w/ table) @ https://raw.githack.com/MrRio/jsPDF/master/docs/module-cell.html
+  pdfDoc.table(
+    10,
+    75,
+    [
+      { id: "1", name: "Roland" },
+      { id: "2", name: "Anna" },
+    ],
+    ["id", "name"],
+    { autosize: true }
+  );
+
   // let headers = [
   //   {
   //     id: "id",
