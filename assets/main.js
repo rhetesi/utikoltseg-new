@@ -1,26 +1,21 @@
 "use strict";
 
 // import from config
-import {
-  workCity,
-  pricePerKm
-} from "./config.js";
+import { workCity, pricePerKm } from "./config.js";
 
 //Namespace import of date.js module
 import * as dateModule from "./date.js";
 // usage example: const actualMonth = dateModule.actualMonth();
 
-import {
-  createAnyElement
-} from "./html.js";
+import { createAnyElement } from "./html.js";
+
+// import "jspdf-autotable";
 
 /**
  * pdf import as Global module format
  */
 
-const {
-  jsPDF
-} = window.jspdf;
+const { jsPDF } = window.jspdf;
 
 // basedatas object declaration
 const basedatas = {
@@ -132,13 +127,13 @@ const addFullMonth = (month) => {
 // Adding viewMonth by defining which month is selected
 let viewMonth;
 dateModule.today.getDate() >
-  new Date(
-    dateModule.today.getFullYear(),
-    dateModule.today.getMonth(),
-    15
-  ).getDate() ?
-  (viewMonth = dateModule.actualMonth) :
-  (viewMonth = dateModule.beforeMonth);
+new Date(
+  dateModule.today.getFullYear(),
+  dateModule.today.getMonth(),
+  15
+).getDate()
+  ? (viewMonth = dateModule.actualMonth)
+  : (viewMonth = dateModule.beforeMonth);
 
 // console.log(viewMonth);
 addFullMonth(viewMonth);
@@ -171,13 +166,16 @@ printButton.addEventListener("click", function () {
   // sumTotal = datesArray.length * homeWorkDistance * pricePerKm;
   // console.log(sumTotal);
 
-  new Date(datesArray[datesArray.length - 1]) > dateModule.today ?
-    (printDate = new Date(datesArray[datesArray.length - 1])) :
-    (printDate = dateModule.today);
+  new Date(datesArray[datesArray.length - 1]) > dateModule.today
+    ? (printDate = new Date(datesArray[datesArray.length - 1]))
+    : (printDate = dateModule.today);
 
   // console.log(printDate);
 
-  pdfName = `Útiköltség_${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndNumericMonthView)}_${basedatas.name}`;
+  pdfName = `Útiköltség_${viewMonth.toLocaleDateString(
+    "hu-HU",
+    dateModule.dateYearAndNumericMonthView
+  )}_${basedatas.name}`;
   // console.log(pdfName);
 
   const pdfDoc = new jsPDF();
@@ -187,11 +185,21 @@ printButton.addEventListener("click", function () {
   pdfDoc.setFontSize(12);
   pdfDoc.setFont("helvetica", "normal");
   // készítés éve és hónapja
-  pdfDoc.text(`${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`, 105, 16, "center");
-  pdfDoc.text(`Az elszámolás alapja a 39/2010. (II. 26.) és 16/2023. (I. 27.) számú Kormányrendeletek, mely alapján gépjármüre fizethetö 30,- Ft/km költségtérítés.`, 10, 25, {
-    maxWidth: 190,
-    align: "left"
-  });
+  pdfDoc.text(
+    `${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`,
+    105,
+    16,
+    "center"
+  );
+  pdfDoc.text(
+    `Az elszámolás alapja a 39/2010. (II. 26.) és 16/2023. (I. 27.) számú Kormányrendeletek, mely alapján gépjármüre fizethetö 30,- Ft/km költségtérítés.`,
+    10,
+    25,
+    {
+      maxWidth: 190,
+      align: "left",
+    }
+  );
   // név és lakcím
   pdfDoc.text(`Név: ${basedatas.name}`, 10, 40);
   pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
@@ -202,13 +210,48 @@ printButton.addEventListener("click", function () {
   // Táblázat fejléc: dátum, indulás-érkezés (helységnév), km/fő, összeg
   // Táblázatsorok: összeg = tableRowSum
   // Táblázat lábléc: -, összesen, összes km, összes összeg (sumTotal)
-  pdfDoc.autoTable({
-    html: '#my-table'
-  });
+
+  /* 
+  
+  for (var i = 1; i <= 12; i++) {
+  doc.text(20, 30 + i * 10, i + " x " + multiplier + " = ___");
+}
+  
+  */
+  // let headers = [
+  //   {
+  //     id: "id",
+  //     name: "id",
+  //     prompt: "id",
+  //     align: "center",
+  //     width: 65,
+  //     padding: 0,
+  //   },
+  //   {
+  //     id: "name",
+  //     name: "name",
+  //     prompt: "name",
+  //     align: "center",
+  //     width: 65,
+  //     padding: 0,
+  //   },
+  // ];
+  // pdfDoc.table(10, 75, headers, { autoSize: true });
+  // pdfDoc.autoTable({
+  //   html: "#my-table",
+  // });
   // keltezés
-  pdfDoc.text(`Hévíz, ${printDate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`, 10, 100);
+  pdfDoc.text(
+    `Hévíz, ${printDate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`,
+    10,
+    100
+  );
   // aláírások: munkahelyi vezető, munkavállaló
-  pdfDoc.save(`${pdfName}.pdf`);
+  pdfDoc.save(`${pdfName}.pdf`); // ideiglenesen vedd ki, ha a jspdf-autotable-t próbálgatod
+
+  // const autopdf = new jsPDF();
+  // autopdf.autotable({ html: "#my-table" });
+  // autopdf.save("table.pdf");
 });
 
 const fillBaseDatas = () => {
