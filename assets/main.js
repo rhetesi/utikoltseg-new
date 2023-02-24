@@ -224,11 +224,27 @@ printButton.addEventListener("click", function () {
     10,
     75,
     [
-      { id: "1", name: "Roland" },
-      { id: "2", name: "Anna" },
+      {
+        dátum: "2023-02-01",
+        "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
+        "Km/fö": "20",
+        összeg: "600,- Ft",
+      },
+      {
+        dátum: "2023-02-02",
+        "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
+        "Km/fö": "20",
+        összeg: "600,- Ft",
+      },
+      {
+        dátum: "2023-02-03",
+        "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
+        "Km/fö": "20",
+        összeg: "600,- Ft",
+      },
     ],
-    ["id", "name"],
-    { autosize: true }
+    ["dátum", "indulás-érkezés (helységnév)", "Km/fö", "összeg"],
+    { autosize: true, maxwidth: 210, align: "center" }
   );
 
   // let headers = [
@@ -257,7 +273,7 @@ printButton.addEventListener("click", function () {
   pdfDoc.text(
     `Hévíz, ${printDate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`,
     10,
-    100
+    250 // mm-nyire a papír tetejétől (az álló A/4-es papír 297 mm magas)
   );
   // aláírások: munkahelyi vezető, munkavállaló
   pdfDoc.save(`${pdfName}.pdf`); // ideiglenesen vedd ki, ha a jspdf-autotable-t próbálgatod
