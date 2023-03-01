@@ -9,6 +9,8 @@ import * as dateModule from "./date.js";
 
 import { createAnyElement } from "./html.js";
 
+import * as pdf from "./createpdf.js";
+
 // import "jspdf-autotable";
 
 /**
