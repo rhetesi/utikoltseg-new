@@ -1,26 +1,36 @@
 "use strict";
 
 // import from config
-import { workCity, pricePerKm } from "./config.js";
+import {
+  workCity,
+  pricePerKm
+} from "./config.js";
 
 //Namespace import of date.js module
 import * as dateModule from "./date.js";
 // usage example: const actualMonth = dateModule.actualMonth();
 
-import { createAnyElement } from "./html.js";
+import {
+  createAnyElement
+} from "./html.js";
 
-import * as calibri from "./calibri-normal.js";
-import * as liberation from "./LiberationSans-Regular-normal.js";
+import * as calibri from "./fonts/calibri-normal.js";
+import * as calibribold from "./fonts/calibri-bold.js";
+// import * as calibribold from "./fonts/calibrib-bold.js";
+
+// import * as liberation from "./fonts/LiberationSerif.js";
 
 import * as pdf from "./createpdf.js";
 
 // import "jspdf-autotable";
 
 /**
- * pdf import as Global module format
+ * jsPDF import as Global module format
  */
 
-const { jsPDF } = window.jspdf;
+const {
+  jsPDF
+} = window.jspdf;
 
 // basedatas object declaration
 const basedatas = {
@@ -132,13 +142,13 @@ const addFullMonth = (month) => {
 // Adding viewMonth by defining which month is selected
 let viewMonth;
 dateModule.today.getDate() >
-new Date(
-  dateModule.today.getFullYear(),
-  dateModule.today.getMonth(),
-  15
-).getDate()
-  ? (viewMonth = dateModule.actualMonth)
-  : (viewMonth = dateModule.beforeMonth);
+  new Date(
+    dateModule.today.getFullYear(),
+    dateModule.today.getMonth(),
+    15
+  ).getDate() ?
+  (viewMonth = dateModule.actualMonth) :
+  (viewMonth = dateModule.beforeMonth);
 
 // console.log(viewMonth);
 addFullMonth(viewMonth);
@@ -171,9 +181,9 @@ printButton.addEventListener("click", function () {
   // sumTotal = datesArray.length * homeWorkDistance * pricePerKm;
   // console.log(sumTotal);
 
-  new Date(datesArray[datesArray.length - 1]) > dateModule.today
-    ? (printDate = new Date(datesArray[datesArray.length - 1]))
-    : (printDate = dateModule.today);
+  new Date(datesArray[datesArray.length - 1]) > dateModule.today ?
+    (printDate = new Date(datesArray[datesArray.length - 1])) :
+    (printDate = dateModule.today);
 
   // console.log(printDate);
 
@@ -186,10 +196,10 @@ printButton.addEventListener("click", function () {
   const pdfDoc = new jsPDF();
   pdfDoc.setFontSize(16);
   // pdfDoc.addFont("calibri-normal.ttf", "calibri", "normal");
-  pdfDoc.setFont("helvetica", "bold");
+  pdfDoc.setFont("calibri", "bold");
   pdfDoc.text(`Munkába járás elszámolása`, 105, 10, "center"); // text("szöveg", bal oldaltól számított távolság, lap tetejétől számított távolság, forgatás(opc), forgatás(opc), igazítás) -> itt a laptól számított 105 mm-hez igazítja középre a szöveget
   pdfDoc.setFontSize(12);
-  pdfDoc.setFont("LiberationSans-Regular", "normal");
+  pdfDoc.setFont("calibri", "normal");
   // készítés éve és hónapja
   pdfDoc.text(
     `${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`,
@@ -198,15 +208,14 @@ printButton.addEventListener("click", function () {
     "center"
   );
   pdfDoc.text(
-    `Az elszámolás alapja a 39/2010. (II. 26.) és 16/2023. (I. 27.) számú Kormányrendeletek, mely alapján gépjármüre fizethetö 30,- Ft/km költségtérítés.`,
+    `Az elszámolás alapja a 39/2010. (II. 26.) és a 16/2023. (I. 27.) számú Kormányrendeletek, mely alapján gépjárműre fizethető 30,- Ft/km költségtérítés.`,
     10,
-    25,
-    {
+    25, {
       maxWidth: 190,
       align: "left",
     }
   );
-  pdfDoc.text("Árvíztűrő tükörfúrógép", 10, 35);
+  // pdfDoc.text("Árvíztűrő tükörfúrógép", 10, 35);
   // név és lakcím
   pdfDoc.text(`Név: ${basedatas.name}`, 10, 40);
   pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
@@ -226,33 +235,35 @@ printButton.addEventListener("click", function () {
 
   */
 
-  pdfDoc.setFont("helvetica", "normal");
+  // pdfDoc.setFont("helvetica", "normal");
   // read the manual of jsPDF cells (w/ table) @ https://raw.githack.com/MrRio/jsPDF/master/docs/module-cell.html
   pdfDoc.table(
     75,
     75,
-    [
-      {
+    [{
         dátum: "2023-02-01",
         "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
-        "Km/fö": "20",
+        "Km/fő": "20",
         összeg: "600,- Ft",
       },
       {
         dátum: "2023-02-02",
         "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
-        "Km/fö": "20",
+        "Km/fő": "20",
         összeg: "600,- Ft",
       },
       {
         dátum: "2023-02-03",
         "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
-        "Km/fö": "20",
+        "Km/fő": "20",
         összeg: "600,- Ft",
       },
     ],
-    ["dátum", "indulás-érkezés (helységnév)", "Km/fö", "összeg"],
-    { autosize: true, maxwidth: 210, align: "center" }
+    ["dátum", "indulás-érkezés (helységnév)", "Km/fő", "összeg"], {
+      autosize: true,
+      maxwidth: 210,
+      align: "center"
+    }
   );
 
   // let headers = [
