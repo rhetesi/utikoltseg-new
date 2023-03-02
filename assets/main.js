@@ -9,6 +9,9 @@ import * as dateModule from "./date.js";
 
 import { createAnyElement } from "./html.js";
 
+import * as calibri from "./calibri-normal.js";
+import * as liberation from "./LiberationSans-Regular-normal.js";
+
 import * as pdf from "./createpdf.js";
 
 // import "jspdf-autotable";
@@ -182,10 +185,11 @@ printButton.addEventListener("click", function () {
 
   const pdfDoc = new jsPDF();
   pdfDoc.setFontSize(16);
+  // pdfDoc.addFont("calibri-normal.ttf", "calibri", "normal");
   pdfDoc.setFont("helvetica", "bold");
   pdfDoc.text(`Munkába járás elszámolása`, 105, 10, "center"); // text("szöveg", bal oldaltól számított távolság, lap tetejétől számított távolság, forgatás(opc), forgatás(opc), igazítás) -> itt a laptól számított 105 mm-hez igazítja középre a szöveget
   pdfDoc.setFontSize(12);
-  pdfDoc.setFont("helvetica", "normal");
+  pdfDoc.setFont("LiberationSans-Regular", "normal");
   // készítés éve és hónapja
   pdfDoc.text(
     `${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`,
@@ -202,6 +206,7 @@ printButton.addEventListener("click", function () {
       align: "left",
     }
   );
+  pdfDoc.text("Árvíztűrő tükörfúrógép", 10, 35);
   // név és lakcím
   pdfDoc.text(`Név: ${basedatas.name}`, 10, 40);
   pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
@@ -221,9 +226,10 @@ printButton.addEventListener("click", function () {
 
   */
 
+  pdfDoc.setFont("helvetica", "normal");
   // read the manual of jsPDF cells (w/ table) @ https://raw.githack.com/MrRio/jsPDF/master/docs/module-cell.html
   pdfDoc.table(
-    10,
+    75,
     75,
     [
       {
