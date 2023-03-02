@@ -16,18 +16,13 @@ import {
 
 import * as calibri from "./fonts/calibri-normal.js";
 import * as calibribold from "./fonts/calibri-bold.js";
-// import * as calibribold from "./fonts/calibrib-bold.js";
 
-// import * as liberation from "./fonts/LiberationSerif.js";
 
 import * as pdf from "./createpdf.js";
 
 // import "jspdf-autotable";
 
-/**
- * jsPDF import as Global module format
- */
-
+// jsPDF import as Global module format
 const {
   jsPDF
 } = window.jspdf;
@@ -166,7 +161,7 @@ printButton.addEventListener("click", function () {
 
   let homeWorkDistance = document.querySelector("input.homeWorkDistance").value;
 
-  let tableRowSum = homeWorkDistance * pricePerKm;
+  let tableRowSum = homeWorkDistance * pricePerKm * 2;
 
   fillBaseDatas();
   fillDates(datesArray);
@@ -174,7 +169,7 @@ printButton.addEventListener("click", function () {
   // console.log(basedatas);
   // console.log(datesArray);
 
-  let sumTotal = datesArray.length * homeWorkDistance * pricePerKm;
+  let sumTotal = datesArray.length * homeWorkDistance * pricePerKm * 2;
   // tableRowSum = homeWorkDistance * pricePerKm;
   // console.log(tableRowSum);
 
@@ -235,7 +230,23 @@ printButton.addEventListener("click", function () {
 
   */
 
-  // pdfDoc.setFont("helvetica", "normal");
+  // for ciklussal kellene összerakni egy tömbbe a következő objektumokat, a kiválasztott napokhoz
+  /* 
+  {
+    dátum: "2023-02-01",
+    "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
+    "Km/fő": "20",
+    összeg: "600,- Ft",
+  },
+
+  {
+  dátum: dates[i].toLocaleDateString("hu-HU", dateModule.dateShortView),
+  "indulás-érkezés (helységnév)": `${basedatas.city}-${workcity}-${basedatas.city}`,
+  "Km/fő": `${basedatas.homeWorkDistance * 2},
+  összeg: `${tableRowSum}`,
+  }
+  */
+
   // read the manual of jsPDF cells (w/ table) @ https://raw.githack.com/MrRio/jsPDF/master/docs/module-cell.html
   pdfDoc.table(
     75,
@@ -285,9 +296,7 @@ printButton.addEventListener("click", function () {
   //   },
   // ];
   // pdfDoc.table(10, 75, headers, { autoSize: true });
-  // pdfDoc.autoTable({
-  //   html: "#my-table",
-  // });
+
   // keltezés
   pdfDoc.text(
     `Hévíz, ${printDate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`,

@@ -19,6 +19,11 @@ export const dateLongView = {
   month: "long",
   day: "numeric",
 };
+export const dateShortView = {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+};
 export const dateYearAndMonthViev = {
   year: "numeric",
   month: "long",
