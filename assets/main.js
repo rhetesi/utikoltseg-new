@@ -230,72 +230,31 @@ printButton.addEventListener("click", function () {
 
   */
 
-  // for ciklussal kellene összerakni egy tömbbe a következő objektumokat, a kiválasztott napokhoz
-  /* 
-  {
-    dátum: "2023-02-01",
-    "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
-    "Km/fő": "20",
-    összeg: "600,- Ft",
-  },
+  const ptable = datesArray.map((date) => ({
+    dátum: new Date(date).toLocaleDateString("hu-HU", dateModule.dateLongView),
+    "indulás-érkezés (helységnév)": `${basedatas.city} - ${workCity} - ${basedatas.city}`,
+    "Km/fő": `${basedatas.homeWorkDistance * 2}`,
+    összeg: `${tableRowSum},- Ft`
+  }));
 
-  {
-  dátum: dates[i].toLocaleDateString("hu-HU", dateModule.dateShortView),
-  "indulás-érkezés (helységnév)": `${basedatas.city}-${workcity}-${basedatas.city}`,
-  "Km/fő": `${basedatas.homeWorkDistance * 2},
-  összeg: `${tableRowSum}`,
-  }
-  */
+  ptable.push({
+    dátum: ' ',
+    "indulás-érkezés (helységnév)": `összesen:`,
+    "Km/fő": ` `,
+    összeg: `${sumTotal},- Ft`
+  })
 
   // read the manual of jsPDF cells (w/ table) @ https://raw.githack.com/MrRio/jsPDF/master/docs/module-cell.html
   pdfDoc.table(
+    10,
     75,
-    75,
-    [{
-        dátum: "2023-02-01",
-        "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
-        "Km/fő": "20",
-        összeg: "600,- Ft",
-      },
-      {
-        dátum: "2023-02-02",
-        "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
-        "Km/fő": "20",
-        összeg: "600,- Ft",
-      },
-      {
-        dátum: "2023-02-03",
-        "indulás-érkezés (helységnév)": "Keszthely-Hévíz-Keszthely",
-        "Km/fő": "20",
-        összeg: "600,- Ft",
-      },
-    ],
+    ptable,
     ["dátum", "indulás-érkezés (helységnév)", "Km/fő", "összeg"], {
       autosize: true,
       maxwidth: 210,
       align: "center"
     }
   );
-
-  // let headers = [
-  //   {
-  //     id: "id",
-  //     name: "id",
-  //     prompt: "id",
-  //     align: "center",
-  //     width: 65,
-  //     padding: 0,
-  //   },
-  //   {
-  //     id: "name",
-  //     name: "name",
-  //     prompt: "name",
-  //     align: "center",
-  //     width: 65,
-  //     padding: 0,
-  //   },
-  // ];
-  // pdfDoc.table(10, 75, headers, { autoSize: true });
 
   // keltezés
   pdfDoc.text(
