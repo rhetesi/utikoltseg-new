@@ -1,5 +1,14 @@
 "use strict";
 
+// jsPDF import as Global module format
+const {
+  jsPDF
+} = window.jspdf;
+
+// import "jspdf-autotable";
+// import 'jspdf-autotable';
+import './autotable/jspdf.plugin.autotable.js'; // Add jspdf-autotable as plugin
+
 // import from config
 import {
   workCity,
@@ -17,15 +26,7 @@ import {
 import * as calibri from "./fonts/calibri-normal.js";
 import * as calibribold from "./fonts/calibri-bold.js";
 
-
 import * as pdf from "./createpdf.js";
-
-// import "jspdf-autotable";
-
-// jsPDF import as Global module format
-const {
-  jsPDF
-} = window.jspdf;
 
 // basedatas object declaration
 const basedatas = {
@@ -255,6 +256,27 @@ printButton.addEventListener("click", function () {
       align: "center"
     }
   );
+
+  // Use jspdf-autotable as plugin
+  pdfDoc.autoTable({
+    styles: {
+      fillColor: [255, 0, 0]
+    },
+    columnStyles: {
+      0: {
+        halign: 'center',
+        fillColor: [0, 255, 0]
+      }
+    }, // Cells in first column centered and green
+    margin: {
+      top: 10
+    },
+    body: [
+      ['Sweden', 'Japan', 'Canada'],
+      ['Norway', 'China', 'USA'],
+      ['Denmark', 'China', 'Mexico'],
+    ],
+  })
 
   // keltezés
   pdfDoc.text(
