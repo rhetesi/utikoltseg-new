@@ -185,14 +185,43 @@ printButton.addEventListener("click", function () {
       top: 50
     },
     styles: {
-      font: "calibri"
+      font: "calibri",
+      lineWidth: .5,
+      lineColor: [75, 75, 75],
+      halign: 'center', // itt kell általánosan igazítani a táblázat celláinak tartalmát
     },
     headStyles: {
-      fillColor: [75, 75, 75]
+      fillColor: [75, 75, 75],
+      halign: 'center',
     },
-    // theme: "grid",
+    theme: "grid",
+    tableLineWidth: .5,
+    tableLineColor: [75, 75, 75],
+    // Kell az oszlopok definiálása, ha azok adatait igazítani szeretnéd
+    columns: [{
+        dataKey: 'dátum',
+        header: 'dátum'
+      },
+      {
+        dataKey: 'indulás - érkezés (helységnév)',
+        header: 'indulás - érkezés (helységnév)'
+      },
+      {
+        dataKey: 'Km/fő',
+        header: 'Km/fő'
+      },
+      {
+        dataKey: 'összeg',
+        header: 'összeg'
+      },
+    ],
     columnStyles: {
-      halign: "center",
+      'Km/fő': {
+        halign: 'right',
+      },
+      összeg: {
+        halign: 'right',
+      },
     },
     head: [
       ["dátum", "indulás - érkezés (helységnév)", "Km/fő", "összeg"]
