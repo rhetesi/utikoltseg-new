@@ -1,19 +1,26 @@
 "use strict";
 
 // jsPDF import as Global module format
-const { jsPDF } = window.jspdf;
+const {
+  jsPDF
+} = window.jspdf;
 
 // Add jspdf-autotable as plugin
 import "./autotable/jspdf.plugin.autotable.js";
 
 // import from config
-import { workCity, pricePerKm } from "./config.js";
+import {
+  workCity,
+  pricePerKm
+} from "./config.js";
 
 //Namespace import of date.js module
 import * as dateModule from "./date.js";
 // usage example: const actualMonth = dateModule.actualMonth();
 
-import { createAnyElement } from "./html.js";
+import {
+  createAnyElement
+} from "./html.js";
 
 import * as calibri from "./fonts/calibri-normal.js";
 import * as calibribold from "./fonts/calibri-bold.js";
@@ -89,13 +96,13 @@ const addFullMonth = (month) => {
 // Adding viewMonth by defining which month is selected
 let viewMonth;
 dateModule.today.getDate() >
-new Date(
-  dateModule.today.getFullYear(),
-  dateModule.today.getMonth(),
-  15
-).getDate()
-  ? (viewMonth = dateModule.actualMonth)
-  : (viewMonth = dateModule.beforeMonth);
+  new Date(
+    dateModule.today.getFullYear(),
+    dateModule.today.getMonth(),
+    15
+  ).getDate() ?
+  (viewMonth = dateModule.actualMonth) :
+  (viewMonth = dateModule.beforeMonth);
 
 addFullMonth(viewMonth);
 
@@ -117,9 +124,9 @@ printButton.addEventListener("click", function () {
 
   let sumTotal = datesArray.length * homeWorkDistance * pricePerKm * 2;
 
-  new Date(datesArray[datesArray.length - 1]) > dateModule.today
-    ? (printDate = new Date(datesArray[datesArray.length - 1]))
-    : (printDate = dateModule.today);
+  new Date(datesArray[datesArray.length - 1]) > dateModule.today ?
+    (printDate = new Date(datesArray[datesArray.length - 1])) :
+    (printDate = dateModule.today);
 
   pdfName = `Útiköltség_${viewMonth.toLocaleDateString(
     "hu-HU",
@@ -144,8 +151,7 @@ printButton.addEventListener("click", function () {
   pdfDoc.text(
     `Az elszámolás alapja a 39/2010. (II. 26.) és a 16/2023. (I. 27.) számú Kormányrendeletek, mely alapján gépjárműre fizethető 30,- Ft/km költségtérítés.`,
     15,
-    25,
-    {
+    25, {
       maxWidth: 190,
       align: "left",
     }
@@ -163,20 +169,34 @@ printButton.addEventListener("click", function () {
     new Date(date).toLocaleDateString("hu-HU", dateModule.dateLongView),
     `${basedatas.city} - ${workCity} - ${basedatas.city}`,
     `${basedatas.homeWorkDistance * 2}`,
-    `${tableRowSum},- Ft`,
+    `${tableRowSum.toLocaleString('hu-HU', {
+            style: 'currency',
+            currency: 'HUF'
+        })}`,
   ]);
 
-  ptable.push([``, `összesen:`, ``, `${sumTotal},- Ft`]);
+  ptable.push([``, `összesen:`, ``, `${sumTotal.toLocaleString('hu-HU', {
+            style: 'currency',
+            currency: 'HUF'
+        })}`]);
 
   pdfDoc.autoTable({
-    margin: { top: 55 },
-    styles: { font: "calibri" },
-    headStyles: { fillColor: [0, 0, 0] },
-    theme: "grid",
+    margin: {
+      top: 55
+    },
+    styles: {
+      font: "calibri"
+    },
+    headStyles: {
+      fillColor: [0, 0, 0]
+    },
+    // theme: "grid",
     columnStyles: {
       halign: "center",
     },
-    head: [["dátum", "indulás - érkezés (helységnév)", "Km/fő", "összeg"]],
+    head: [
+      ["dátum", "indulás - érkezés (helységnév)", "Km/fő", "összeg"]
+    ],
     body: ptable,
   });
 
