@@ -175,11 +175,6 @@ printButton.addEventListener("click", function () {
         })}`,
   ]);
 
-  ptable.push([``, `összesen:`, ``, `${sumTotal.toLocaleString('hu-HU', {
-            style: 'currency',
-            currency: 'HUF'
-        })}`]);
-
   pdfDoc.autoTable({
     margin: {
       top: 50
@@ -193,6 +188,10 @@ printButton.addEventListener("click", function () {
     headStyles: {
       fillColor: [75, 75, 75],
       halign: 'center',
+    },
+    footStyles: {
+      fillColor: [75, 75, 75],
+      halign: 'right',
     },
     theme: "grid",
     tableLineWidth: .5,
@@ -227,6 +226,12 @@ printButton.addEventListener("click", function () {
       ["dátum", "indulás - érkezés (helységnév)", "Km/fő", "összeg"]
     ],
     body: ptable,
+    foot: [
+      [``, `összesen:`, ``, `${sumTotal.toLocaleString('hu-HU', {
+            style: 'currency',
+            currency: 'HUF'
+        })}`]
+    ],
   });
 
   // keltezés
