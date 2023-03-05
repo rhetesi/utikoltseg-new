@@ -155,8 +155,8 @@ printButton.addEventListener("click", function () {
   pdfDoc.text(`Név: ${basedatas.name}`, 15, 40);
   pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
   // Személygépkocsi típusa és forgami rendszáma
-  pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 15, 50);
-  pdfDoc.text(`forgalmi rendszám: ${basedatas.plate}`, 105, 50);
+  pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 15, 45);
+  pdfDoc.text(`forgalmi rendszám: ${basedatas.plate}`, 105, 45);
 
   //Táblázat
   const ptable = datesArray.map((date) => [
