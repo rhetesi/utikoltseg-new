@@ -1,27 +1,20 @@
 "use strict";
 
 // jsPDF import as Global module format
-const {
-  jsPDF
-} = window.jspdf;
+const { jsPDF } = window.jspdf;
 
 // import "jspdf-autotable";
 // import 'jspdf-autotable';
-import './autotable/jspdf.plugin.autotable.js'; // Add jspdf-autotable as plugin
+import "./autotable/jspdf.plugin.autotable.js"; // Add jspdf-autotable as plugin
 
 // import from config
-import {
-  workCity,
-  pricePerKm
-} from "./config.js";
+import { workCity, pricePerKm } from "./config.js";
 
 //Namespace import of date.js module
 import * as dateModule from "./date.js";
 // usage example: const actualMonth = dateModule.actualMonth();
 
-import {
-  createAnyElement
-} from "./html.js";
+import { createAnyElement } from "./html.js";
 
 import * as calibri from "./fonts/calibri-normal.js";
 import * as calibribold from "./fonts/calibri-bold.js";
@@ -138,13 +131,13 @@ const addFullMonth = (month) => {
 // Adding viewMonth by defining which month is selected
 let viewMonth;
 dateModule.today.getDate() >
-  new Date(
-    dateModule.today.getFullYear(),
-    dateModule.today.getMonth(),
-    15
-  ).getDate() ?
-  (viewMonth = dateModule.actualMonth) :
-  (viewMonth = dateModule.beforeMonth);
+new Date(
+  dateModule.today.getFullYear(),
+  dateModule.today.getMonth(),
+  15
+).getDate()
+  ? (viewMonth = dateModule.actualMonth)
+  : (viewMonth = dateModule.beforeMonth);
 
 // console.log(viewMonth);
 addFullMonth(viewMonth);
@@ -177,9 +170,9 @@ printButton.addEventListener("click", function () {
   // sumTotal = datesArray.length * homeWorkDistance * pricePerKm;
   // console.log(sumTotal);
 
-  new Date(datesArray[datesArray.length - 1]) > dateModule.today ?
-    (printDate = new Date(datesArray[datesArray.length - 1])) :
-    (printDate = dateModule.today);
+  new Date(datesArray[datesArray.length - 1]) > dateModule.today
+    ? (printDate = new Date(datesArray[datesArray.length - 1]))
+    : (printDate = dateModule.today);
 
   // console.log(printDate);
 
@@ -205,18 +198,19 @@ printButton.addEventListener("click", function () {
   );
   pdfDoc.text(
     `Az elszámolás alapja a 39/2010. (II. 26.) és a 16/2023. (I. 27.) számú Kormányrendeletek, mely alapján gépjárműre fizethető 30,- Ft/km költségtérítés.`,
-    10,
-    25, {
+    15,
+    25,
+    {
       maxWidth: 190,
       align: "left",
     }
   );
   // pdfDoc.text("Árvíztűrő tükörfúrógép", 10, 35);
   // név és lakcím
-  pdfDoc.text(`Név: ${basedatas.name}`, 10, 40);
+  pdfDoc.text(`Név: ${basedatas.name}`, 15, 40);
   pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
   // Személygépkocsi típusa és forgami rendszáma
-  pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 10, 50);
+  pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 15, 50);
   pdfDoc.text(`forgalmi rendszám: ${basedatas.plate}`, 105, 50);
   //Táblázat
   // Táblázat fejléc: dátum, indulás-érkezés (helységnév), km/fő, összeg
@@ -231,60 +225,84 @@ printButton.addEventListener("click", function () {
 
   */
 
-  const ptable = datesArray.map((date) => ({
-    dátum: new Date(date).toLocaleDateString("hu-HU", dateModule.dateLongView),
-    "indulás-érkezés (helységnév)": `${basedatas.city} - ${workCity} - ${basedatas.city}`,
-    "Km/fő": `${basedatas.homeWorkDistance * 2}`,
-    összeg: `${tableRowSum},- Ft`
-  }));
+  const ptable = datesArray.map((date) => [
+    new Date(date).toLocaleDateString("hu-HU", dateModule.dateLongView),
+    `${basedatas.city} - ${workCity} - ${basedatas.city}`,
+    `${basedatas.homeWorkDistance * 2}`,
+    `${tableRowSum},- Ft`,
+  ]);
 
-  ptable.push({
-    dátum: ' ',
-    "indulás-érkezés (helységnév)": `összesen:`,
-    "Km/fő": ` `,
-    összeg: `${sumTotal},- Ft`
-  })
+  ptable.push([``, `összesen:`, ``, `${sumTotal},- Ft`]);
+
+  // console.log(ptable);
 
   // read the manual of jsPDF cells (w/ table) @ https://raw.githack.com/MrRio/jsPDF/master/docs/module-cell.html
-  pdfDoc.table(
-    10,
-    75,
-    ptable,
-    ["dátum", "indulás-érkezés (helységnév)", "Km/fő", "összeg"], {
-      autosize: true,
-      maxwidth: 210,
-      align: "center"
-    }
-  );
+  // pdfDoc.table(
+  //   10,
+  //   75,
+  //   ptable,
+  //   ["dátum", "indulás-érkezés (helységnév)", "Km/fő", "összeg"],
+  //   {
+  //     autosize: true,
+  //     maxwidth: 210,
+  //     align: "center",
+  //   }
+  // );
 
   // Use jspdf-autotable as plugin
+  // pdfDoc.autoTable({
+  //   styles: {
+  //     fillColor: [255, 0, 0],
+  //   },
+  //   columnStyles: {
+  //     0: {
+  //       halign: "center",
+  //       fillColor: [0, 255, 0],
+  //     },
+  //   }, // Cells in first column centered and green
+  //   margin: {
+  //     top: 10,
+  //   },
+  //   body: [
+  //     ["Sweden", "Japan", "Canada"],
+  //     ["Norway", "China", "USA"],
+  //     ["Denmark", "China", "Mexico"],
+  //   ],
+  // });
+
   pdfDoc.autoTable({
-    styles: {
-      fillColor: [255, 0, 0]
-    },
+    margin: { top: 55 },
+    styles: { font: "calibri" },
+    headStyles: { fillColor: [0, 0, 0] },
+    theme: "grid",
     columnStyles: {
-      0: {
-        halign: 'center',
-        fillColor: [0, 255, 0]
-      }
-    }, // Cells in first column centered and green
-    margin: {
-      top: 10
+      halign: "center",
     },
-    body: [
-      ['Sweden', 'Japan', 'Canada'],
-      ['Norway', 'China', 'USA'],
-      ['Denmark', 'China', 'Mexico'],
-    ],
-  })
+    head: [["dátum", "indulás - érkezés (helységnév)", "Km/fő", "összeg"]],
+    body: ptable,
+    // [
+    // ["2022. február 1.", "Keszthely - Hévíz - Keszthely", "14", "420,- Ft"],
+    // ["2022. február 2.", "Keszthely - Hévíz - Keszthely", "14", "420,- Ft"],
+    // ["2022. február 4.", "Keszthely - Hévíz - Keszthely", "14", "420,- Ft"],
+    // ["2022. február 5.", "Keszthely - Hévíz - Keszthely", "14", "420,- Ft"],
+    // ...
+
+    // ],
+  });
 
   // keltezés
   pdfDoc.text(
     `Hévíz, ${printDate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`,
-    10,
+    15,
     250 // mm-nyire a papír tetejétől (az álló A/4-es papír 297 mm magas)
   );
+
   // aláírások: munkahelyi vezető, munkavállaló
+  pdfDoc.text(`.........................................`, 60, 270, "center");
+  pdfDoc.text(`.........................................`, 150, 270, "center");
+  pdfDoc.text(`munkahelyi vezető`, 60, 275, "center");
+  pdfDoc.text(`munkavállaló aláírása`, 150, 275, "center");
+
   pdfDoc.save(`${pdfName}.pdf`); // ideiglenesen vedd ki, ha a jspdf-autotable-t próbálgatod
 
   // const autopdf = new jsPDF();
