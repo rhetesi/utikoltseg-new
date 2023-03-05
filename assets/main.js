@@ -137,7 +137,7 @@ printButton.addEventListener("click", function () {
   const pdfDoc = new jsPDF();
   pdfDoc.setFontSize(16);
   pdfDoc.setFont("calibri", "bold");
-  pdfDoc.text(`Munkába járás elszámolása`, 105, 10, "center"); // text("szöveg", bal oldaltól számított távolság, lap tetejétől számított távolság, forgatás(opc), forgatás(opc), igazítás) -> itt a laptól számított 105 mm-hez igazítja középre a szöveget
+  pdfDoc.text(`Munkába járás elszámolása`, 105, 15, "center"); // text("szöveg", bal oldaltól számított távolság, lap tetejétől számított távolság, forgatás(opc), forgatás(opc), igazítás) -> itt a laptól számított 105 mm-hez igazítja középre a szöveget
   pdfDoc.setFontSize(11);
   pdfDoc.setFont("calibri", "normal");
 
@@ -145,13 +145,13 @@ printButton.addEventListener("click", function () {
   pdfDoc.text(
     `${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`,
     105,
-    16,
+    20,
     "center"
   );
   pdfDoc.text(
     `Az elszámolás alapja a 39/2010. (II. 26.) és a 16/2023. (I. 27.) számú Kormányrendeletek, mely alapján gépjárműre fizethető 30,- Ft/km költségtérítés.`,
     15,
-    25, {
+    30, {
       maxWidth: 190,
       align: "left",
     }
@@ -161,8 +161,8 @@ printButton.addEventListener("click", function () {
   pdfDoc.text(`Név: ${basedatas.name}`, 15, 40);
   pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
   // Személygépkocsi típusa és forgami rendszáma
-  pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 15, 45);
-  pdfDoc.text(`forgalmi rendszám: ${basedatas.plate}`, 105, 45);
+  pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 15, 44);
+  pdfDoc.text(`forgalmi rendszám: ${basedatas.plate}`, 105, 44);
 
   //Táblázat
   const ptable = datesArray.map((date) => [
@@ -182,13 +182,13 @@ printButton.addEventListener("click", function () {
 
   pdfDoc.autoTable({
     margin: {
-      top: 55
+      top: 50
     },
     styles: {
       font: "calibri"
     },
     headStyles: {
-      fillColor: [0, 0, 0]
+      fillColor: [50, 50, 50]
     },
     // theme: "grid",
     columnStyles: {
