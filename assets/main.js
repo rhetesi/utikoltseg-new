@@ -60,7 +60,7 @@ const addFullMonth = (month) => {
     // egy táblázat sor készítése
     let tr = createAnyElement("tr");
 
-    // az adott táblázat sor elős cellájának elkészítése
+    // az adott táblázat sor első cellájának elkészítése
     let td = createAnyElement("td");
 
     // hogy maga a dátum is kattintható legyen, a cellába egy címke (label) kerül, mely az adott sor jelölőnégyzetével (checkbox) van összekötve
@@ -76,7 +76,7 @@ const addFullMonth = (month) => {
     // cella hozzáadása a sorhoz
     tr.appendChild(td);
 
-    // adott táblázat sorba jelöőnégyzet készítése, s tulajdonságainak beállítása
+    // adott táblázat sorba jelölőnégyzet készítése, s tulajdonságainak beállítása
     td = createAnyElement("td", {
       class: "text-center",
     });
@@ -109,7 +109,7 @@ addFullMonth(viewMonth);
 // create a printView
 
 printButton.addEventListener("click", function () {
-  //   Itt kell meghívni a többi függvényt!
+  //  this function call the other functions: fillBaseDatas() & fillDates(), latter w/ datesArrey
 
   let datesArray = [];
   let printDate;
@@ -132,22 +132,22 @@ printButton.addEventListener("click", function () {
     "hu-HU",
     dateModule.dateYearAndNumericMonthView
   )}_${basedatas.name}`;
-  // console.log(pdfName);
 
   const pdfDoc = new jsPDF();
   pdfDoc.setFontSize(16);
   pdfDoc.setFont("calibri", "bold");
-  pdfDoc.text(`Munkába járás elszámolása`, 105, 15, "center"); // text("szöveg", bal oldaltól számított távolság, lap tetejétől számított távolság, forgatás(opc), forgatás(opc), igazítás) -> itt a laptól számított 105 mm-hez igazítja középre a szöveget
+  pdfDoc.text(`Munkába járás elszámolása`, 105, 15, "center"); // accounting for going to work
   pdfDoc.setFontSize(11);
   pdfDoc.setFont("calibri", "normal");
 
-  // készítés éve és hónapja
+  // year and month of the print of accounting 
   pdfDoc.text(
     `${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`,
     105,
     20,
     "center"
   );
+
   pdfDoc.text(
     `Az elszámolás alapja a 39/2010. (II. 26.) és a 16/2023. (I. 27.) számú Kormányrendeletek, mely alapján gépjárműre fizethető 30,- Ft/km költségtérítés.`,
     15,
@@ -157,14 +157,14 @@ printButton.addEventListener("click", function () {
     }
   );
 
-  // név és lakcím
+  // name & city, address
   pdfDoc.text(`Név: ${basedatas.name}`, 15, 40);
   pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
-  // Személygépkocsi típusa és forgami rendszáma
+  // car & car plate
   pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 15, 44);
   pdfDoc.text(`forgalmi rendszám: ${basedatas.plate}`, 105, 44);
 
-  //Táblázat
+  // table with daily home-work distance datas to printing
   const ptable = datesArray.map((date) => [
     new Date(date).toLocaleDateString("hu-HU", dateModule.dateLongView),
     `${basedatas.city} - ${workCity} - ${basedatas.city}`,
@@ -188,7 +188,7 @@ printButton.addEventListener("click", function () {
       font: "calibri"
     },
     headStyles: {
-      fillColor: [50, 50, 50]
+      fillColor: [75, 75, 75]
     },
     // theme: "grid",
     columnStyles: {
