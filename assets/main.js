@@ -3,9 +3,8 @@
 // jsPDF import as Global module format
 const { jsPDF } = window.jspdf;
 
-// import "jspdf-autotable";
-// import 'jspdf-autotable';
-import "./autotable/jspdf.plugin.autotable.js"; // Add jspdf-autotable as plugin
+// Add jspdf-autotable as plugin
+import "./autotable/jspdf.plugin.autotable.js";
 
 // import from config
 import { workCity, pricePerKm } from "./config.js";
@@ -32,48 +31,7 @@ const basedatas = {
 };
 
 // select some HTML element
-// const monthSelect = document.querySelector(".monthselect"); // hóanpválasztáshoz
-// const monthSelectionButton = document.querySelector('.monthselection');
-// const daysPicker = document.querySelector(".dayspicker"); // Ez nem is kell
 const printButton = document.querySelector(".printbutton");
-
-/* Hónapválasztó HTMl elemek beszúrása, későbbi fejlesztéshez!!!
-let htmlElement;
-
-htmlElement = `
-<div>
-<input type='radio' class='mSelect' id='beforeMonth' name='month' value='beforeMonth'>
-<label for='beforeMonth'>${dateModule.beforeMonth.toLocaleDateString(
-  "hu-HU",
-  dateModule.dateMonthView
-)}</label>
-<input type='radio' class='mSelect' id='actualMonth' name='month' value='actualMonth'>
-<label for='actualMonth'>${dateModule.actualMonth.toLocaleDateString(
-  "hu-HU",
-  dateModule.dateMonthView
-)}</label>
-</div>
-`;
-
-monthSelect.insertAdjacentHTML("beforeend", htmlElement);
-
-const fm = document.querySelector(".firstMonth");
-const sm = document.querySelector(".secondMonth");
-
-fm.insertAdjacentText(
-  "beforeend",
-  `${dateModule.beforeMonth.toLocaleDateString(
-    "hu-HU",
-    dateModule.dateMonthView
-  )}`
-);
-sm.insertAdjacentText(
-  "beforeend",
-  `${dateModule.actualMonth.toLocaleDateString(
-    "hu-HU",
-    dateModule.dateMonthView
-  )}`
-); */
 
 // Arrow function to add the selected month's dates w/ checkboxes to HTML
 const addFullMonth = (month) => {
@@ -139,10 +97,7 @@ new Date(
   ? (viewMonth = dateModule.actualMonth)
   : (viewMonth = dateModule.beforeMonth);
 
-// console.log(viewMonth);
 addFullMonth(viewMonth);
-
-// do some math - multiply the dateArray length with the pricePerKm variable's value -> get the value of the fullPrice variable - 3rd function
 
 // create a printView
 
@@ -160,21 +115,11 @@ printButton.addEventListener("click", function () {
   fillBaseDatas();
   fillDates(datesArray);
 
-  // console.log(basedatas);
-  // console.log(datesArray);
-
   let sumTotal = datesArray.length * homeWorkDistance * pricePerKm * 2;
-  // tableRowSum = homeWorkDistance * pricePerKm;
-  // console.log(tableRowSum);
-
-  // sumTotal = datesArray.length * homeWorkDistance * pricePerKm;
-  // console.log(sumTotal);
 
   new Date(datesArray[datesArray.length - 1]) > dateModule.today
     ? (printDate = new Date(datesArray[datesArray.length - 1]))
     : (printDate = dateModule.today);
-
-  // console.log(printDate);
 
   pdfName = `Útiköltség_${viewMonth.toLocaleDateString(
     "hu-HU",
@@ -184,11 +129,11 @@ printButton.addEventListener("click", function () {
 
   const pdfDoc = new jsPDF();
   pdfDoc.setFontSize(16);
-  // pdfDoc.addFont("calibri-normal.ttf", "calibri", "normal");
   pdfDoc.setFont("calibri", "bold");
   pdfDoc.text(`Munkába járás elszámolása`, 105, 10, "center"); // text("szöveg", bal oldaltól számított távolság, lap tetejétől számított távolság, forgatás(opc), forgatás(opc), igazítás) -> itt a laptól számított 105 mm-hez igazítja középre a szöveget
-  pdfDoc.setFontSize(12);
+  pdfDoc.setFontSize(11);
   pdfDoc.setFont("calibri", "normal");
+
   // készítés éve és hónapja
   pdfDoc.text(
     `${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`,
@@ -205,26 +150,15 @@ printButton.addEventListener("click", function () {
       align: "left",
     }
   );
-  // pdfDoc.text("Árvíztűrő tükörfúrógép", 10, 35);
+
   // név és lakcím
   pdfDoc.text(`Név: ${basedatas.name}`, 15, 40);
   pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
   // Személygépkocsi típusa és forgami rendszáma
   pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 15, 50);
   pdfDoc.text(`forgalmi rendszám: ${basedatas.plate}`, 105, 50);
+
   //Táblázat
-  // Táblázat fejléc: dátum, indulás-érkezés (helységnév), km/fő, összeg
-  // Táblázatsorok: összeg = tableRowSum
-  // Táblázat lábléc: -, összesen, összes km, összes összeg (sumTotal)
-
-  /*
-  
-  for (var i = 1; i <= 12; i++) {
-  doc.text(20, 30 + i * 10, i + " x " + multiplier + " = ___");
-}
-
-  */
-
   const ptable = datesArray.map((date) => [
     new Date(date).toLocaleDateString("hu-HU", dateModule.dateLongView),
     `${basedatas.city} - ${workCity} - ${basedatas.city}`,
@@ -233,42 +167,6 @@ printButton.addEventListener("click", function () {
   ]);
 
   ptable.push([``, `összesen:`, ``, `${sumTotal},- Ft`]);
-
-  // console.log(ptable);
-
-  // read the manual of jsPDF cells (w/ table) @ https://raw.githack.com/MrRio/jsPDF/master/docs/module-cell.html
-  // pdfDoc.table(
-  //   10,
-  //   75,
-  //   ptable,
-  //   ["dátum", "indulás-érkezés (helységnév)", "Km/fő", "összeg"],
-  //   {
-  //     autosize: true,
-  //     maxwidth: 210,
-  //     align: "center",
-  //   }
-  // );
-
-  // Use jspdf-autotable as plugin
-  // pdfDoc.autoTable({
-  //   styles: {
-  //     fillColor: [255, 0, 0],
-  //   },
-  //   columnStyles: {
-  //     0: {
-  //       halign: "center",
-  //       fillColor: [0, 255, 0],
-  //     },
-  //   }, // Cells in first column centered and green
-  //   margin: {
-  //     top: 10,
-  //   },
-  //   body: [
-  //     ["Sweden", "Japan", "Canada"],
-  //     ["Norway", "China", "USA"],
-  //     ["Denmark", "China", "Mexico"],
-  //   ],
-  // });
 
   pdfDoc.autoTable({
     margin: { top: 55 },
@@ -280,14 +178,6 @@ printButton.addEventListener("click", function () {
     },
     head: [["dátum", "indulás - érkezés (helységnév)", "Km/fő", "összeg"]],
     body: ptable,
-    // [
-    // ["2022. február 1.", "Keszthely - Hévíz - Keszthely", "14", "420,- Ft"],
-    // ["2022. február 2.", "Keszthely - Hévíz - Keszthely", "14", "420,- Ft"],
-    // ["2022. február 4.", "Keszthely - Hévíz - Keszthely", "14", "420,- Ft"],
-    // ["2022. február 5.", "Keszthely - Hévíz - Keszthely", "14", "420,- Ft"],
-    // ...
-
-    // ],
   });
 
   // keltezés
@@ -297,17 +187,13 @@ printButton.addEventListener("click", function () {
     250 // mm-nyire a papír tetejétől (az álló A/4-es papír 297 mm magas)
   );
 
-  // aláírások: munkahelyi vezető, munkavállaló
+  // aláírások
   pdfDoc.text(`.........................................`, 60, 270, "center");
   pdfDoc.text(`.........................................`, 150, 270, "center");
   pdfDoc.text(`munkahelyi vezető`, 60, 275, "center");
   pdfDoc.text(`munkavállaló aláírása`, 150, 275, "center");
 
-  pdfDoc.save(`${pdfName}.pdf`); // ideiglenesen vedd ki, ha a jspdf-autotable-t próbálgatod
-
-  // const autopdf = new jsPDF();
-  // autopdf.autotable({ html: "#my-table" });
-  // autopdf.save("table.pdf");
+  pdfDoc.save(`${pdfName}.pdf`);
 });
 
 const fillBaseDatas = () => {
@@ -317,16 +203,9 @@ const fillBaseDatas = () => {
       basedatas[key] = fieldValue;
     }
   }
-  // return;
 };
 
 const fillDates = (arr) => {
-  // Nézd meg, hogy milyen más módon tudod kigyűjteni kiválasztott dátumokat!!!
-  // for (let i = 1; i <= dateModule.monthLength(month); i = i + 1) {
-  //   const dateValue = document.querySelector();
-  // }
-  // console.log("Hello!");
-
   const dates = document.querySelectorAll("input.checkbox");
 
   for (let i = 0; i < dates.length; i = i + 1) {
