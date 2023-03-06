@@ -16,9 +16,10 @@ import * as calibri from "./fonts/calibri-normal.js";
 import * as calibribold from "./fonts/calibri-bold.js";
 
 
-const print = ({
+export const pdfPrint = ({
   params
 }) => {
+  // Create a new pdf document (default A/4 portrait oriented paper size)
   const pdf = new jsPDF();
 
   /* 
