@@ -57,7 +57,7 @@ export const printPdf = (params) => {
   pdfDoc.text(`személygépkocsi típusa: ${params.basedatas.vehicle}`, 15, 44);
   pdfDoc.text(`forgalmi rendszám: ${params.basedatas.plate}`, 105, 44);
 
-  // Create
+  // Create table
   pdfDoc.autoTable({
     margin: {
       top: 50
