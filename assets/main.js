@@ -25,7 +25,10 @@ import {
 import * as calibri from "./fonts/calibri-normal.js";
 import * as calibribold from "./fonts/calibri-bold.js";
 
-import * as pdf from "./createpdf.js";
+// import * as pdf from "./createpdf.js";
+import {
+  printPdf
+} from "./createpdf.js";
 
 // basedatas object declaration
 const basedatas = {
@@ -247,7 +250,29 @@ printButton.addEventListener("click", function () {
   pdfDoc.text(`munkahelyi vezető`, 60, 275, "center");
   pdfDoc.text(`munkavállaló aláírása`, 150, 275, "center");
 
-  pdfDoc.save(`${pdfName}.pdf`);
+  // pdfDoc.save(`${pdfName}.pdf`);
+
+  const printObject = {};
+
+  // tableRowSum: this.tableRowSum,
+  printObject.tableRowSum = tableRowSum;
+  // sumTotal: this.sumTotal,
+  printObject.sumTotal = sumTotal;
+  // pdfName: this.pdfName,
+  printObject.pdfName = pdfName;
+  // viewMonth: this.vm,
+  printObject.viewMonth = viewMonth;
+  // basedatas: this.basedatas,
+  printObject.basedatas = basedatas;
+  // ptable: this.ptable,
+  printObject.ptable = ptable;
+  // printDate,
+  printObject.printDate = printDate;
+
+  // console.log(printObject);
+
+  printPdf(printObject);
+
 });
 
 const fillBaseDatas = () => {

@@ -16,22 +16,10 @@ import * as calibri from "./fonts/calibri-normal.js";
 import * as calibribold from "./fonts/calibri-bold.js";
 
 
-export const pdfPrint = ({
-  params
-}) => {
-  // Create a new pdf document (default A/4 portrait oriented paper size)
-  const pdf = new jsPDF();
 
-  /* 
-  params object keys:
-  - tableRowSum
-  - sumTotal
-  - pdfName
-  - viewMonth
-  - basedatas
-  - ptable
-  - 
-  */
+export const printPdf = (params) => {
+  // Create a new pdf document (default A/4 portrait oriented paper size)
+  const pdfDoc = new jsPDF();
 
   // Set the font style of the title to Calibri bold 16pt & add title to accounting for going to work
   pdfDoc.setFontSize(16);
@@ -44,8 +32,8 @@ export const pdfPrint = ({
 
   // Add the year and month of the printing
   pdfDoc.text(
-    `${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`,
-    // `${params.viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`,
+    // `${viewMonth.toLocaleDateString("hu-HU", dateModule.dateYearAndMonthViev)}`,
+    `${params.viewMonth.toLocaleDateString("hu-HU", date.dateYearAndMonthViev)}`,
     105,
     20,
     "center"
@@ -63,11 +51,11 @@ export const pdfPrint = ({
 
   // Add person and car related informations from basedatas
   // name & city, address
-  pdfDoc.text(`Név: ${basedatas.name}`, 15, 40);
-  pdfDoc.text(`lakcím: ${basedatas.city}, ${basedatas.address}`, 105, 40);
+  pdfDoc.text(`Név: ${params.basedatas.name}`, 15, 40);
+  pdfDoc.text(`lakcím: ${params.basedatas.city}, ${params.basedatas.address}`, 105, 40);
   // car & car plate
-  pdfDoc.text(`személygépkocsi típusa: ${basedatas.vehicle}`, 15, 44);
-  pdfDoc.text(`forgalmi rendszám: ${basedatas.plate}`, 105, 44);
+  pdfDoc.text(`személygépkocsi típusa: ${params.basedatas.vehicle}`, 15, 44);
+  pdfDoc.text(`forgalmi rendszám: ${params.basedatas.plate}`, 105, 44);
 
   // Create
   pdfDoc.autoTable({
@@ -120,9 +108,9 @@ export const pdfPrint = ({
     head: [
       ["dátum", "indulás - érkezés (helységnév)", "Km/fő", "összeg"]
     ],
-    body: ptable,
+    body: params.ptable,
     foot: [
-      [``, `összesen:`, ``, `${sumTotal.toLocaleString('hu-HU', {
+      [``, `összesen:`, ``, `${params.sumTotal.toLocaleString('hu-HU', {
             style: 'currency',
             currency: 'HUF'
         })}`]
@@ -131,7 +119,7 @@ export const pdfPrint = ({
 
   // Add dating (location and date) of print
   pdfDoc.text(
-    `Hévíz, ${printDate.toLocaleDateString("hu-HU", dateModule.dateLongView)}`,
+    `Hévíz, ${params.printDate.toLocaleDateString("hu-HU", date.dateLongView)}`,
     15,
     250 // mm-nyire a papír tetejétől (az álló A/4-es papír 297 mm magas)
   );
@@ -143,6 +131,6 @@ export const pdfPrint = ({
   pdfDoc.text(`munkavállaló aláírása`, 150, 275, "center");
 
   // Save the generated pdf doc
-  pdfDoc.save(`${pdfName}.pdf`);
+  pdfDoc.save(`${params.pdfName}.pdf`);
 
 };
