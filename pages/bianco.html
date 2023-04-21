@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Útiköltség elszámolás</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body>
+  <main clas="container">
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <h2>Útiköltség elszámolás készítése</h2>
+        <p></p>
+        <form action="">
+          <div class="basedatas">
+            <div class="form-group">
+              <label for="name">Név<small class="compulsory">*</small></label>
+              <input type="text" class="form-control print name" id="name" placeholder="Kérem, adja meg a teljes nevét!"
+                required />
+            </div>
+            <div class="form-group">
+              <label for="city">Település<small class="compulsory">*</small></label>
+              <input type="text" class="form-control print city" id="city"
+                placeholder="Kérem, adja meg a település nevét, ahol lakik!" required />
+            </div>
+            <div class="form-group">
+              <label for="address">Postacím<small class="compulsory">*</small></label>
+              <input type="text" class="form-control print address" id="address"
+                placeholder="Kérem, adja meg a postacímét (utca, házszám, emelet, ajtó)!" required />
+            </div>
+            <div class="form-group">
+              <label for="homeWorkDistance">Távolság<small class="compulsory">*</small></label>
+              <input type="number" class="form-control print homeWorkDistance" id="homeWorkDistance"
+                placeholder="Kérem, adja meg a lakóhelye és munkahelye közötti távolságot!" min="0" step="0.1"
+                required />
+            </div>
+            <div class="form-group">
+              <label for="vehicle">Gépjármű típusa</label>
+              <input type="text" class="form-control print vehicle" id="vehicle"
+                placeholder="Itt adhatja meg, hogy milyen gépjárművel utazik" />
+            </div>
+            <div class="form-group">
+              <label for="plate">Gépjármű rendszáma</label>
+              <input type="text" class="form-control print plate" id="plate"
+                placeholder="Itt adhatja meg gépjárműve rendszámát" />
+            </div>
+            <small class="compulsory">A csillaggal jelölt mezők kitöltése kötelező!</small>
+          </div>
+          <div class="months">
+            <h3>
+              Kérem válassza ki, melyik napokon dolgozott
+            </h3>
+            <!-- <div class="monthselect">
+              <div class="mSelect firstMonth"></div>
+              <div class="mSelect secondMonth"></div>
+            </div> -->
+            <!-- <button class="monthselection">Ez kell-e majd a végén?</button> -->
+          </div>
+          <div class="dayspickerDiv">
+            <table class="table table-striped text-center daysPickerTable">
+              <thead class="daysPickerTableHead">
+                <tr>
+                  <th class="dayOfMonthColumn"></th>
+                  <th class="selectorColumn">Kiválasztva</th>
+                </tr>
+              </thead>
+              <tbody class="dayspicker"></tbody>
+            </table>
+          </div>
+          <button type="submit" class="btn btn-outline-primary printbutton">
+            Nyomtat(ható .PDF készítése)
+          </button>
+        </form>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous">
+  </script>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+  <!-- <script src="https://unpkg.com/jspdf-autotable"></script> -->
+  <!-- <script src="https://unpkg.com/jspdf-autotable@3.5.28/dist/jspdf.plugin.autotable.js"></script> -->
+  <script src="./assets/autotable/jspdf.plugin.autotable.js"></script>
+  <script type="module" src="./assets/main.js"></script>
+</body>
+
+</html>
